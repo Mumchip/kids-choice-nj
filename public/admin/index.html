@@ -1,11 +1,25 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Admin</title>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.10.0/dist/decap-cms.js"></script>
+    <!-- Load Decap CMS (primary) -->
+    <script
+      src="https://unpkg.com/decap-cms@3.10.0/dist/decap-cms.js"
+      defer
+      onerror="(function(){
+        var s=document.createElement('script');
+        s.src='https://cdn.jsdelivr.net/npm/decap-cms@3.10.0/dist/decap-cms.js';
+        s.defer=true; document.body.appendChild(s);
+      })();"
+    ></script>
+
+    <!-- Optional: turn on verbose logging so we can see issues in Console -->
+    <script>
+      window.localStorage && localStorage.setItem('decap-cms-log-level','debug');
+    </script>
   </body>
 </html>
