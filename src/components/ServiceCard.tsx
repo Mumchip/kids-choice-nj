@@ -10,9 +10,9 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ icon: Icon, title, description, features }: ServiceCardProps) => {
   return (
-    <Card className="hover:shadow-medium transition-all duration-300 border-2 hover:border-primary/20">
+    <Card className="group hover-lift hover-glow border-2 hover:border-primary/30 overflow-hidden relative">
       <CardHeader>
-        <div className="w-14 h-14 bg-hero-gradient rounded-lg flex items-center justify-center mb-4">
+        <div className="w-14 h-14 bg-hero-gradient rounded-xl flex items-center justify-center mb-4 shadow-medium group-hover:scale-110 transition-transform duration-300">
           <Icon className="w-7 h-7 text-white" />
         </div>
         <CardTitle className="text-xl">{title}</CardTitle>

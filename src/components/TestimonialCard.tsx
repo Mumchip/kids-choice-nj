@@ -9,7 +9,7 @@ interface TestimonialCardProps {
 
 const TestimonialCard = ({ quote, author, role }: TestimonialCardProps) => {
   return (
-    <Card className="h-full hover:shadow-medium transition-all">
+    <Card className="h-full hover-lift border-2 hover:border-primary/20 relative overflow-hidden bg-gradient-to-br from-background to-secondary/30">
       <CardContent className="pt-6">
         <Quote className="w-10 h-10 text-accent mb-4" />
         <p className="text-muted-foreground mb-4 italic">"{quote}"</p>

@@ -79,30 +79,34 @@ const Index = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[600px] flex items-center">
+      <section className="relative min-h-[700px] flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/50" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-2xl animate-slide-up">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+          <div className="max-w-2xl">
+            <div className="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary font-semibold text-sm animate-fade-in backdrop-blur-sm">
+              ✓ Licensed & ADA Compliant Since 2005
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight animate-slide-up">
               Accessible, Reliable, and Caring Transportation for Everyone
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
               Licensed school bus and wheelchair-accessible transportation services you can trust. 
               Safety, dignity, and compassion in every ride.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 animate-scale-in">
               <Link to="/wheelchair-services">
-                <Button size="lg" className="bg-hero-gradient hover:opacity-90 transition-opacity text-lg">
+                <Button size="lg" className="bg-hero-gradient hover:scale-105 hover:shadow-large transition-all text-lg shadow-medium">
                   Wheelchair Services <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="text-lg">
+                <Button size="lg" variant="outline" className="text-lg hover:bg-secondary/80 border-2 hover:scale-105 transition-all">
                   Request a Quote
                 </Button>
               </Link>
@@ -112,35 +116,39 @@ const Index = () => {
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-12 bg-secondary">
+      <section className="py-16 bg-gradient-to-b from-secondary to-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="animate-fade-in">
-              <div className="text-4xl font-bold text-primary mb-2">20+</div>
-              <p className="text-sm text-muted-foreground">Years of Service</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center p-6 rounded-2xl glass hover-lift animate-fade-in">
+              <div className="text-5xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent mb-2">20+</div>
+              <p className="text-sm font-medium text-muted-foreground">Years of Service</p>
             </div>
-            <div className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              <div className="text-4xl font-bold text-primary mb-2">100%</div>
-              <p className="text-sm text-muted-foreground">Licensed & Insured</p>
+            <div className="text-center p-6 rounded-2xl glass hover-lift animate-fade-in" style={{ animationDelay: "0.1s" }}>
+              <div className="text-5xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent mb-2">100%</div>
+              <p className="text-sm font-medium text-muted-foreground">Licensed & Insured</p>
             </div>
-            <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <div className="text-4xl font-bold text-primary mb-2">5000+</div>
-              <p className="text-sm text-muted-foreground">Happy Clients</p>
+            <div className="text-center p-6 rounded-2xl glass hover-lift animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="text-5xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent mb-2">5000+</div>
+              <p className="text-sm font-medium text-muted-foreground">Happy Clients</p>
             </div>
-            <div className="animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              <div className="text-4xl font-bold text-primary mb-2">ADA</div>
-              <p className="text-sm text-muted-foreground">Compliant</p>
+            <div className="text-center p-6 rounded-2xl glass hover-lift animate-fade-in" style={{ animationDelay: "0.3s" }}>
+              <div className="text-5xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent mb-2">ADA</div>
+              <p className="text-sm font-medium text-muted-foreground">Compliant</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Our Services */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Our Services</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+      <section className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/30 to-transparent pointer-events-none" />
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-16">
+            <div className="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary font-semibold text-sm backdrop-blur-sm">
+              What We Offer
+            </div>
+            <h2 className="text-5xl font-bold text-foreground mb-4">Our Services</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Comprehensive transportation solutions designed with your safety, comfort, and accessibility in mind.
             </p>
           </div>
@@ -187,7 +195,8 @@ const Index = () => {
                 </Link>
               </div>
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-medium">
+            <div className="rounded-3xl overflow-hidden shadow-large hover-lift relative">
+              <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent z-10" />
               <img
                 src={caringService}
                 alt="Professional driver assisting wheelchair user"
@@ -199,11 +208,13 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20">
+      <section className="py-24 bg-gradient-to-b from-background to-secondary">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h2 className="text-4xl font-bold text-foreground mb-4">What Our Clients Say</h2>
+          <div className="text-center mb-16">
+            <div className="w-16 h-16 bg-hero-gradient rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-medium animate-float">
+              <Users className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-5xl font-bold text-foreground mb-4">What Our Clients Say</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Don't just take our word for it. Here's what families, schools, and clients have to say about our services.
             </p>
@@ -219,21 +230,22 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-hero-gradient text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready to Experience Safe, Compassionate Transportation?</h2>
+      <section className="py-24 bg-hero-gradient text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary-light/20 pointer-events-none" />
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="text-5xl font-bold mb-4 animate-fade-in">Ready to Experience Safe, Compassionate Transportation?</h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
             Contact us today for a free quote or to discuss your transportation needs. 
             We're here to help you get where you need to go, safely and comfortably.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
             <Link to="/contact">
-              <Button size="lg" variant="secondary" className="text-lg">
+              <Button size="lg" variant="secondary" className="text-lg hover:scale-105 transition-all shadow-large">
                 Get a Free Quote
               </Button>
             </Link>
             <a href="tel:+1234567890">
-              <Button size="lg" variant="outline" className="text-lg border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="text-lg border-2 border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-all">
                 Call (123) 456-7890
               </Button>
             </a>
