@@ -4,9 +4,11 @@ backend:
   branch: main
   base_url: https://cms-oauth-ochre.vercel.app
   auth_endpoint: /api/auth
+  site_id: https://www.kidschoicenj.com
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
+
 
 collections:
   - name: "site"
