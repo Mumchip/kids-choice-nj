@@ -52,7 +52,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <a href="tel:+1234567890" className="flex items-center space-x-2 text-primary hover:text-primary-light transition-colors">
               <Phone className="w-4 h-4" />
-              <span className="font-semibold">(123</span>
+              <span className="font-semibold">(973) 563-2532</span>
             </a>
             <Link to="/contact">
               <Button className="bg-accent-gradient hover:opacity-90 transition-opacity">
