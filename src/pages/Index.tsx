@@ -80,33 +80,42 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-[700px] flex items-center overflow-hidden">
+        <div className="geometric-shape w-96 h-96 bg-primary -top-20 -left-20" />
+        <div className="geometric-shape w-80 h-80 bg-accent top-40 -right-40" />
+        <div className="geometric-shape w-64 h-64 bg-primary-light bottom-20 left-1/3" />
+        
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/70" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/92 to-background/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/60" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl">
-            <div className="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary font-semibold text-sm animate-fade-in backdrop-blur-sm">
-              ✓ Licensed & ADA Compliant Since 2005
+            <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-gradient-to-r from-primary/15 via-accent/15 to-primary/15 border-2 border-primary/30 rounded-full text-primary font-bold text-sm animate-fade-in backdrop-blur-sm shadow-medium">
+              <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+              Licensed & ADA Compliant Since 2005
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight animate-slide-up">
-              Accessible, Reliable, and Caring Transportation for Everyone
+            <h1 className="text-5xl md:text-7xl font-extrabold text-foreground mb-6 leading-tight animate-slide-up">
+              Accessible, Reliable, and{" "}
+              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
+                Caring Transportation
+              </span>{" "}
+              for Everyone
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl text-muted-foreground mb-8 font-medium">
               Licensed school bus and wheelchair-accessible transportation services you can trust. 
               Safety, dignity, and compassion in every ride.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 animate-scale-in">
               <Link to="/wheelchair-services">
-                <Button size="lg" className="bg-hero-gradient hover:scale-105 hover:shadow-large transition-all text-lg shadow-medium">
+                <Button size="lg" className="bg-gradient-to-r from-primary via-primary-light to-accent hover:scale-105 hover:shadow-large transition-all text-lg shadow-medium font-bold">
                   Wheelchair Services <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button size="lg" variant="outline" className="text-lg hover:bg-secondary/80 border-2 hover:scale-105 transition-all">
+                <Button size="lg" variant="outline" className="text-lg hover:bg-secondary/80 border-2 border-primary/30 hover:border-primary hover:scale-105 transition-all font-semibold">
                   Request a Quote
                 </Button>
               </Link>
@@ -116,39 +125,48 @@ const Index = () => {
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-16 bg-gradient-to-b from-secondary to-background">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-gradient-to-b from-secondary via-background to-secondary/50 relative overflow-hidden">
+        <div className="geometric-shape w-72 h-72 bg-accent -top-20 right-1/4" />
+        <div className="container mx-auto px-4 relative">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center p-6 rounded-2xl glass hover-lift animate-fade-in">
-              <div className="text-5xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent mb-2">20+</div>
-              <p className="text-sm font-medium text-muted-foreground">Years of Service</p>
+            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-primary/10 relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="text-6xl font-black bg-gradient-to-br from-primary via-primary-light to-accent bg-clip-text text-transparent mb-3 relative">20+</div>
+              <p className="text-sm font-bold text-muted-foreground relative">Years of Service</p>
             </div>
-            <div className="text-center p-6 rounded-2xl glass hover-lift animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              <div className="text-5xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent mb-2">100%</div>
-              <p className="text-sm font-medium text-muted-foreground">Licensed & Insured</p>
+            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-accent/10 relative overflow-hidden group" style={{ animationDelay: "0.1s" }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="text-6xl font-black bg-gradient-to-br from-accent via-primary to-primary-light bg-clip-text text-transparent mb-3 relative">100%</div>
+              <p className="text-sm font-bold text-muted-foreground relative">Licensed & Insured</p>
             </div>
-            <div className="text-center p-6 rounded-2xl glass hover-lift animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <div className="text-5xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent mb-2">5000+</div>
-              <p className="text-sm font-medium text-muted-foreground">Happy Clients</p>
+            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-primary/10 relative overflow-hidden group" style={{ animationDelay: "0.2s" }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="text-6xl font-black bg-gradient-to-br from-primary via-accent to-primary-light bg-clip-text text-transparent mb-3 relative">5000+</div>
+              <p className="text-sm font-bold text-muted-foreground relative">Happy Clients</p>
             </div>
-            <div className="text-center p-6 rounded-2xl glass hover-lift animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              <div className="text-5xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent mb-2">ADA</div>
-              <p className="text-sm font-medium text-muted-foreground">Compliant</p>
+            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-accent/10 relative overflow-hidden group" style={{ animationDelay: "0.3s" }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="text-6xl font-black bg-gradient-to-br from-accent via-primary-light to-primary bg-clip-text text-transparent mb-3 relative">ADA</div>
+              <p className="text-sm font-bold text-muted-foreground relative">Compliant</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Our Services */}
-      <section className="py-24 relative">
+      <section className="py-24 relative overflow-hidden">
+        <div className="geometric-shape w-96 h-96 bg-primary top-20 -left-40" />
+        <div className="geometric-shape w-80 h-80 bg-accent bottom-20 -right-40" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/30 to-transparent pointer-events-none" />
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-16">
-            <div className="inline-block mb-4 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary font-semibold text-sm backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-gradient-to-r from-accent/15 via-primary/15 to-accent/15 border-2 border-accent/30 rounded-full text-accent font-bold text-sm backdrop-blur-sm">
               What We Offer
             </div>
-            <h2 className="text-5xl font-bold text-foreground mb-4">Our Services</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-5xl md:text-6xl font-black text-foreground mb-4">
+              Our <span className="bg-gradient-to-r from-primary via-accent to-primary-light bg-clip-text text-transparent">Services</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
               Comprehensive transportation solutions designed with your safety, comfort, and accessibility in mind.
             </p>
           </div>
@@ -230,22 +248,30 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-hero-gradient text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary-light/20 pointer-events-none" />
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-5xl font-bold mb-4 animate-fade-in">Ready to Experience Safe, Compassionate Transportation?</h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-light to-accent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,255,255,0.1),transparent_50%)]" />
+        <div className="geometric-shape w-96 h-96 bg-white/10 -top-40 -left-40" />
+        <div className="geometric-shape w-80 h-80 bg-white/10 -bottom-40 -right-40" />
+        
+        <div className="container mx-auto px-4 text-center relative z-10 text-white">
+          <h2 className="text-5xl md:text-6xl font-black mb-6 animate-fade-in leading-tight">
+            Ready to Experience Safe, <br />
+            <span className="text-white/90">Compassionate Transportation?</span>
+          </h2>
+          <p className="text-xl mb-10 opacity-95 max-w-2xl mx-auto font-medium">
             Contact us today for a free quote or to discuss your transportation needs. 
             We're here to help you get where you need to go, safely and comfortably.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
             <Link to="/contact">
-              <Button size="lg" variant="secondary" className="text-lg hover:scale-105 transition-all shadow-large">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg hover:scale-105 transition-all shadow-large font-bold">
                 Get a Free Quote
               </Button>
             </Link>
             <a href="tel:+1234567890">
-              <Button size="lg" variant="outline" className="text-lg border-2 border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-all">
+              <Button size="lg" variant="outline" className="text-lg border-2 border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-all font-semibold backdrop-blur-sm">
                 Call (123) 456-7890
               </Button>
             </a>
