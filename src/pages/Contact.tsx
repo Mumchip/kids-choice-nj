@@ -11,21 +11,19 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().email("Invalid email address").max(255),
   phone: z.string().min(10, "Phone number must be at least 10 digits").max(20),
   serviceType: z.string().min(1, "Please select a service type"),
-  message: z.string().min(10, "Message must be at least 10 characters").max(1000),
+  message: z.string().min(10, "Message must be at least 10 characters").max(1000)
 });
-
 type FormData = z.infer<typeof formSchema>;
-
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,29 +31,23 @@ const Contact = () => {
       email: "",
       phone: "",
       serviceType: "",
-      message: "",
-    },
+      message: ""
+    }
   });
-
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    
+
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
+    await new Promise(resolve => setTimeout(resolve, 1500));
     console.log("Form data:", data);
-    
     toast({
       title: "Message Sent Successfully!",
-      description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      description: "Thank you for contacting us. We'll get back to you within 24 hours."
     });
-    
     form.reset();
     setIsSubmitting(false);
   };
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
 
       {/* Hero Section */}
@@ -80,50 +72,36 @@ const Contact = () => {
               <h2 className="text-3xl font-bold text-foreground mb-6">Send Us a Message</h2>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
+                  <FormField control={form.control} name="name" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel>Full Name *</FormLabel>
                         <FormControl>
                           <Input placeholder="John Doe" {...field} />
                         </FormControl>
                         <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
+                      </FormItem>} />
+                  <FormField control={form.control} name="email" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel>Email Address *</FormLabel>
                         <FormControl>
                           <Input type="email" placeholder="john@example.com" {...field} />
                         </FormControl>
                         <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
+                      </FormItem>} />
+                  <FormField control={form.control} name="phone" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel>Phone Number *</FormLabel>
                         <FormControl>
                           <Input type="tel" placeholder="(123) 456-7890" {...field} />
                         </FormControl>
                         <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="serviceType"
-                    render={({ field }) => (
-                      <FormItem>
+                      </FormItem>} />
+                  <FormField control={form.control} name="serviceType" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel>Service Type *</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
@@ -140,32 +118,17 @@ const Contact = () => {
                           </SelectContent>
                         </Select>
                         <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
+                      </FormItem>} />
+                  <FormField control={form.control} name="message" render={({
+                  field
+                }) => <FormItem>
                         <FormLabel>Message *</FormLabel>
                         <FormControl>
-                          <Textarea
-                            placeholder="Tell us about your transportation needs..."
-                            className="min-h-[150px]"
-                            {...field}
-                          />
+                          <Textarea placeholder="Tell us about your transportation needs..." className="min-h-[150px]" {...field} />
                         </FormControl>
                         <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-hero-gradient hover:opacity-90"
-                    disabled={isSubmitting}
-                  >
+                      </FormItem>} />
+                  <Button type="submit" size="lg" className="w-full bg-hero-gradient hover:opacity-90" disabled={isSubmitting}>
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
@@ -182,12 +145,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                    <a href="tel:+1234567890" className="text-primary hover:text-primary-light text-lg">
-                      (123) 456-7890
-                    </a>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Available Monday - Friday, 7:00 AM - 6:00 PM
-                    </p>
+                    <a href="tel:+1234567890" className="text-primary hover:text-primary-light text-lg">(973) 563-2532</a>
+                    <p className="text-sm text-muted-foreground mt-1">Available Monday - Sunday, 7:00 AM - 6:00 PM</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -196,9 +155,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                    <a href="mailto:info@kidschoiceinc.com" className="text-primary hover:text-primary-light text-lg">
-                      info@kidschoiceinc.com
-                    </a>
+                    <a href="mailto:info@kidschoiceinc.com" className="text-primary hover:text-primary-light text-lg">info@kidschoicenj.com</a>
                     <p className="text-sm text-muted-foreground mt-1">
                       We respond within 24 hours
                     </p>
@@ -210,7 +167,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Service Area</h3>
-                    <p className="text-foreground text-lg">Metropolitan Area</p>
+                    <p className="text-foreground text-lg">North/Central New Jersey</p>
                     <p className="text-sm text-muted-foreground mt-1">
                       Serving multiple counties and communities
                     </p>
@@ -223,9 +180,9 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Business Hours</h3>
                     <div className="space-y-1 text-foreground">
-                      <p>Monday - Friday: 7:00 AM - 6:00 PM</p>
-                      <p>Saturday: 8:00 AM - 2:00 PM</p>
-                      <p>Sunday: Closed</p>
+                      <p>Monday - Sunday: 7:00 AM - 6:00 PM</p>
+                      
+                      
                     </div>
                     <p className="text-sm text-muted-foreground mt-2">
                       Emergency service available 24/7
@@ -237,10 +194,7 @@ const Contact = () => {
               {/* Quick Contact Box */}
               <div className="bg-accent-gradient text-foreground rounded-xl p-8 shadow-medium">
                 <h3 className="text-2xl font-bold mb-4">Need Immediate Assistance?</h3>
-                <p className="mb-6">
-                  For urgent transportation needs or emergency scheduling, please call us directly. 
-                  Our dispatch team is ready to help.
-                </p>
+                <p className="mb-6">For urgent transportation needs or emergency scheduling, please call us directly. Our team is ready to help.</p>
                 <a href="tel:+1234567890">
                   <Button size="lg" variant="secondary" className="w-full">
                     Call Now: (123) 456-7890
@@ -286,8 +240,6 @@ const Contact = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;
