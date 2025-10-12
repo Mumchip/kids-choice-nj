@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-secondary border-t border-border">
+  return <footer className="bg-secondary border-t border-border">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -14,9 +12,7 @@ const Footer = () => {
               </div>
               <h3 className="text-lg font-bold text-foreground">Kids Choice INC.</h3>
             </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Licensed transportation services specializing in wheelchair-accessible transport and school bus services since 2005.
-            </p>
+            <p className="text-sm text-muted-foreground mb-4">Licensed transportation services specializing in wheelchair-accessible transport and school bus services since 1998.</p>
             <p className="text-xs text-muted-foreground">
               © 2025 Kids Choice INC. All rights reserved.
             </p>
@@ -75,18 +71,14 @@ const Footer = () => {
                 <Phone className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <p className="text-muted-foreground">Phone:</p>
-                  <a href="tel:+1234567890" className="text-foreground hover:text-primary transition-colors">
-                    (123) 456-7890
-                  </a>
+                  <a href="tel:+1234567890" className="text-foreground hover:text-primary transition-colors">(973) 563-2532</a>
                 </div>
               </li>
               <li className="flex items-start space-x-2">
                 <Mail className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <p className="text-muted-foreground">Email:</p>
-                  <a href="mailto:info@kidschoiceinc.com" className="text-foreground hover:text-primary transition-colors">
-                    info@kidschoiceinc.com
-                  </a>
+                  <a href="mailto:info@kidschoiceinc.com" className="text-foreground hover:text-primary transition-colors">info@kidschoicenj.com</a>
                 </div>
               </li>
               <li className="flex items-start space-x-2">
@@ -106,8 +98,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;

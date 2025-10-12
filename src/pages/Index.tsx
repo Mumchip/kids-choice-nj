@@ -7,75 +7,42 @@ import TestimonialCard from "@/components/TestimonialCard";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-accessible-van.jpg";
 import caringService from "@/assets/caring-service.jpg";
-
 const Index = () => {
-  const services = [
-    {
-      icon: Accessibility,
-      title: "Wheelchair Accessible Transport",
-      description: "Specialized mobility services with lift-equipped vans and trained staff.",
-      features: [
-        "Lift-equipped and ramp-accessible vehicles",
-        "Trained and compassionate drivers",
-        "Door-to-door service",
-        "Medical appointment transport",
-      ],
-    },
-    {
-      icon: Bus,
-      title: "School Transportation",
-      description: "Safe and reliable school bus services for students and districts.",
-      features: [
-        "Licensed and certified drivers",
-        "Modern, well-maintained fleet",
-        "GPS tracking and safety monitoring",
-        "Flexible routing options",
-      ],
-    },
-    {
-      icon: Shield,
-      title: "Safety First",
-      description: "Comprehensive safety protocols and certified professionals.",
-      features: [
-        "Regular vehicle maintenance",
-        "Background-checked drivers",
-        "Safety training programs",
-        "ADA compliance certified",
-      ],
-    },
-    {
-      icon: Heart,
-      title: "Compassionate Care",
-      description: "Treating every passenger with dignity, respect, and kindness.",
-      features: [
-        "Patient and caring staff",
-        "Personalized service approach",
-        "Family and caregiver communication",
-        "Comfortable and clean vehicles",
-      ],
-    },
-  ];
-
-  const testimonials = [
-    {
-      quote: "Kids Choice has been transporting my daughter to school for 3 years. The drivers are always on time, professional, and genuinely care about the kids. I couldn't ask for better service.",
-      author: "Maria Thompson",
-      role: "Parent, Lincoln Elementary",
-    },
-    {
-      quote: "As someone who uses a wheelchair, finding reliable transportation has always been a challenge. Kids Choice changed that completely. Their drivers are respectful, patient, and the vehicles are always clean and well-maintained.",
-      author: "Robert Chen",
-      role: "Mobility Client",
-    },
-    {
-      quote: "We've contracted Kids Choice for our private school's transportation needs for over 5 years. Their safety record is impeccable and communication is outstanding. Highly recommend.",
-      author: "Jennifer Martinez",
-      role: "School Administrator",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  const services = [{
+    icon: Accessibility,
+    title: "Wheelchair Accessible Transport",
+    description: "Specialized mobility services with lift-equipped vans and trained staff.",
+    features: ["Lift-equipped and ramp-accessible vehicles", "Trained and compassionate drivers", "Door-to-door service", "Medical appointment transport"]
+  }, {
+    icon: Bus,
+    title: "School Transportation",
+    description: "Safe and reliable school bus services for students and districts.",
+    features: ["Licensed and certified drivers", "Modern, well-maintained fleet", "GPS tracking and safety monitoring", "Flexible routing options"]
+  }, {
+    icon: Shield,
+    title: "Safety First",
+    description: "Comprehensive safety protocols and certified professionals.",
+    features: ["Regular vehicle maintenance", "Background-checked drivers", "Safety training programs", "ADA compliance certified"]
+  }, {
+    icon: Heart,
+    title: "Compassionate Care",
+    description: "Treating every passenger with dignity, respect, and kindness.",
+    features: ["Patient and caring staff", "Personalized service approach", "Family and caregiver communication", "Comfortable and clean vehicles"]
+  }];
+  const testimonials = [{
+    quote: "Kids Choice has been transporting my daughter to school for 3 years. The drivers are always on time, professional, and genuinely care about the kids. I couldn't ask for better service.",
+    author: "Maria Thompson",
+    role: "Parent, Lincoln Elementary"
+  }, {
+    quote: "As someone who uses a wheelchair, finding reliable transportation has always been a challenge. Kids Choice changed that completely. Their drivers are respectful, patient, and the vehicles are always clean and well-maintained.",
+    author: "Robert Chen",
+    role: "Mobility Client"
+  }, {
+    quote: "We've contracted Kids Choice for our private school's transportation needs for over 5 years. Their safety record is impeccable and communication is outstanding. Highly recommend.",
+    author: "Jennifer Martinez",
+    role: "School Administrator"
+  }];
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
 
       {/* Hero Section */}
@@ -84,10 +51,9 @@ const Index = () => {
         <div className="geometric-shape w-80 h-80 bg-accent top-40 -right-40" />
         <div className="geometric-shape w-64 h-64 bg-primary-light bottom-20 left-1/3" />
         
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+        backgroundImage: `url(${heroImage})`
+      }}>
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/92 to-background/75" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/60" />
         </div>
@@ -131,20 +97,26 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-primary/10 relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="text-6xl font-black bg-gradient-to-br from-primary via-primary-light to-accent bg-clip-text text-transparent mb-3 relative">20+</div>
+              <div className="text-6xl font-black bg-gradient-to-br from-primary via-primary-light to-accent bg-clip-text text-transparent mb-3 relative">25+</div>
               <p className="text-sm font-bold text-muted-foreground relative">Years of Service</p>
             </div>
-            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-accent/10 relative overflow-hidden group" style={{ animationDelay: "0.1s" }}>
+            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-accent/10 relative overflow-hidden group" style={{
+            animationDelay: "0.1s"
+          }}>
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="text-6xl font-black bg-gradient-to-br from-accent via-primary to-primary-light bg-clip-text text-transparent mb-3 relative">100%</div>
               <p className="text-sm font-bold text-muted-foreground relative">Licensed & Insured</p>
             </div>
-            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-primary/10 relative overflow-hidden group" style={{ animationDelay: "0.2s" }}>
+            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-primary/10 relative overflow-hidden group" style={{
+            animationDelay: "0.2s"
+          }}>
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="text-6xl font-black bg-gradient-to-br from-primary via-accent to-primary-light bg-clip-text text-transparent mb-3 relative">5000+</div>
               <p className="text-sm font-bold text-muted-foreground relative">Happy Clients</p>
             </div>
-            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-accent/10 relative overflow-hidden group" style={{ animationDelay: "0.3s" }}>
+            <div className="text-center p-8 rounded-3xl glass hover-lift animate-fade-in border-2 border-accent/10 relative overflow-hidden group" style={{
+            animationDelay: "0.3s"
+          }}>
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="text-6xl font-black bg-gradient-to-br from-accent via-primary-light to-primary bg-clip-text text-transparent mb-3 relative">ADA</div>
               <p className="text-sm font-bold text-muted-foreground relative">Compliant</p>
@@ -171,11 +143,11 @@ const Index = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+            {services.map((service, index) => <div key={index} className="animate-slide-up" style={{
+            animationDelay: `${index * 0.1}s`
+          }}>
                 <ServiceCard {...service} />
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -191,19 +163,10 @@ const Index = () => {
                 It's about trust, safety, and treating every passenger with the respect they deserve.
               </p>
               <ul className="space-y-4">
-                {[
-                  "State-licensed and fully insured",
-                  "Specialized training for mobility assistance",
-                  "Modern, accessible vehicle fleet",
-                  "24/7 dispatch and support",
-                  "Personalized service plans",
-                  "Proven safety record",
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center space-x-3">
+                {["State-licensed and fully insured", "Specialized training for mobility assistance", "Modern, accessible vehicle fleet", "24/7 dispatch and support", "Personalized service plans", "Proven safety record"].map((item, index) => <li key={index} className="flex items-center space-x-3">
                     <CheckCircle className="w-6 h-6 text-primary flex-shrink-0" />
                     <span className="text-foreground">{item}</span>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
               <div className="mt-8">
                 <Link to="/about">
@@ -215,11 +178,7 @@ const Index = () => {
             </div>
             <div className="rounded-3xl overflow-hidden shadow-large hover-lift relative">
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent z-10" />
-              <img
-                src={caringService}
-                alt="Professional driver assisting wheelchair user"
-                className="w-full h-full object-cover"
-              />
+              <img src={caringService} alt="Professional driver assisting wheelchair user" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -238,11 +197,11 @@ const Index = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 0.15}s` }}>
+            {testimonials.map((testimonial, index) => <div key={index} className="animate-fade-in" style={{
+            animationDelay: `${index * 0.15}s`
+          }}>
                 <TestimonialCard {...testimonial} />
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -280,8 +239,6 @@ const Index = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
