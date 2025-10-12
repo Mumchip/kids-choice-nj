@@ -2,8 +2,8 @@ backend:
   name: github
   repo: Mumchip/accessible-journeys-inc
   branch: main
-  base_url: https://accessible-journeys-inc-oauth.vercel.app
-  auth_endpoint: api/auth
+  base_url: https://cms-oauth-ochre.vercel.app
+  auth_endpoint: /api/auth
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
@@ -16,5 +16,6 @@ collections:
         label: "Home Page Text"
         name: "home"
         fields:
-          - { label: "Hero Title", name: "hero_title", widget: "string" }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+          - { name: "hero_title", label: "Hero Title", widget: "string" }
+          - { name: "hero_subtitle", label: "Hero Subtitle", widget: "string" }
+
