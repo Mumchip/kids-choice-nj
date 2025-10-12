@@ -6,20 +6,32 @@
     <title>Admin</title>
   </head>
   <body>
-    <!-- Load Decap CMS (primary) -->
-    <script
-      src="https://unpkg.com/decap-cms@3.10.0/dist/decap-cms.js"
-      defer
-      onerror="(function(){
-        var s=document.createElement('script');
-        s.src='https://cdn.jsdelivr.net/npm/decap-cms@3.10.0/dist/decap-cms.js';
-        s.defer=true; document.body.appendChild(s);
-      })();"
-    ></script>
-
-    <!-- Optional: turn on verbose logging so we can see issues in Console -->
     <script>
-      window.localStorage && localStorage.setItem('decap-cms-log-level','debug');
+      console.log('admin bootstrap start');
+    </script>
+
+    <!-- Primary CDN -->
+    <script src="https://unpkg.com/decap-cms@3.8.4/dist/decap-cms.js"></script>
+
+    <!-- Fallback CDN (loads only if the first fails) -->
+    <script>
+      if (!window.CMS) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/decap-cms@3.8.4/dist/decap-cms.js';
+        document.body.appendChild(s);
+      }
+    </script>
+
+    <script>
+      // Make sure we see something in the console when CMS has loaded
+      (function waitForCMS(i){
+        if (window.CMS) {
+          console.log('Decap CMS loaded', CMS);
+          return;
+        }
+        if (i>50) { console.error('CMS failed to load'); return; }
+        setTimeout(function(){ waitForCMS(i+1); }, 100);
+      })(0);
     </script>
   </body>
 </html>
