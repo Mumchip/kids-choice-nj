@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Award, Heart, Shield, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -153,12 +154,12 @@ const About = () => {
               We're always looking for compassionate, safety-focused professionals to join our team. 
               If you're interested in making a difference in your community, we'd love to hear from you.
             </p>
-            <a 
-              href="mailto:info@kidschoicenj.com" 
+            <Link 
+              to="/contact" 
               className="inline-block bg-hero-gradient text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
             >
               View Career Opportunities
-            </a>
+            </Link>
           </div>
         </div>
       </section>
