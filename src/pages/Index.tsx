@@ -61,7 +61,7 @@ const Index = () => {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-gradient-to-r from-primary/15 via-accent/15 to-primary/15 border-2 border-primary/30 rounded-full text-primary font-bold text-sm animate-fade-in backdrop-blur-sm shadow-medium">
               <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-              Licensed & ADA Compliant Since 2005
+              Licensed & ADA Compliant Since 1998
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold text-foreground mb-6 leading-tight animate-slide-up">
               Accessible, Reliable, and{" "}

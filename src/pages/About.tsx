@@ -12,7 +12,7 @@ const About = () => {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold text-foreground mb-6 animate-fade-in">About Kids Choice INC.</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up">
-            For over 20 years, we've been committed to providing safe, reliable, and compassionate 
+            For 25+ years, we've been committed to providing safe, reliable, and compassionate 
             transportation services for students and individuals with mobility needs.
           </p>
         </div>
@@ -25,7 +25,7 @@ const About = () => {
             <h2 className="text-4xl font-bold text-foreground mb-6">Our Story</h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
-                Kids Choice INC. was founded in 2005 with a simple mission: to provide transportation services 
+                Kids Choice INC. was founded in 1998 with a simple mission: to provide transportation services 
                 that families and institutions could trust completely. What started as a small school bus operation 
                 has grown into a comprehensive transportation service provider specializing in both student transport 
                 and wheelchair-accessible mobility services.

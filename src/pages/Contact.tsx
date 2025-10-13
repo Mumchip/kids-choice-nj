@@ -121,7 +121,7 @@ const Contact = () => {
                 }) => <FormItem>
                         <FormLabel>Phone Number *</FormLabel>
                         <FormControl>
-                          <Input type="tel" placeholder="(973) 384-1425" {...field} />
+                          <Input type="tel" placeholder="1234567890" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>} />
