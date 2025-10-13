@@ -243,7 +243,7 @@ const Contact = () => {
           <div className="max-w-5xl mx-auto">
             <iframe
               className="w-full h-[320px] md:h-[450px] rounded-3xl border-0 shadow-medium"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d661956.2150439898!2d-74.7!3d40.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f9.5!3m3!1m2!1s0x89c0fb959e00409f%3A0x2cd27b07f83f6d8d!2sNew%20Jersey!5e0!3m2!1sen!2sus!4v1760390450568!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d721954.8326716657!2d-75.06375078484903!3d41.602919125025004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c0fb959e00409f%3A0x2cd27b07f83f6d8d!2sNew%20Jersey!5e0!3m2!1sen!2sus!4v1760390920191!5m2!1sen!2sus"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
