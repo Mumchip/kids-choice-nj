@@ -155,38 +155,45 @@ const JoinUs = () => {
 
     try {
       const formData = new FormData();
-      formData.append("Full Name", data.name);
-      formData.append("Phone Number", data.phone);
-      formData.append("Criminal history with fingerprint?", data.criminalHistory ?? "Not provided");
-      formData.append("Commercial Driver's License (CDL)?", data.commercialLicense ?? "Not provided");
-      formData.append("Passenger & Student Endorsement?", data.passengerEndorsement ?? "Not provided");
-      formData.append("Drug test completed?", data.drugTestCompleted ?? "Not provided");
-      formData.append("Any prior driving experience?", data.priorExperience === "yes" ? "Yes" : "No");
-      formData.append("Experience Company", data.experienceCompany?.trim() || "Not provided");
-      formData.append("Experience Duration", data.experienceDuration?.trim() || "Not provided");
-      formData.append("Additional Notes", data.extraNotes?.trim() || "Not provided");
+      formData.append("name", data.name);
+      formData.append("phone", data.phone);
+      formData.append("criminalHistory", data.criminalHistory ?? "Not provided");
+      formData.append("commercialLicense", data.commercialLicense ?? "Not provided");
+      formData.append("passengerEndorsement", data.passengerEndorsement ?? "Not provided");
+      formData.append("drugTestCompleted", data.drugTestCompleted ?? "Not provided");
+      formData.append("priorExperience", data.priorExperience === "yes" ? "Yes" : "No");
+      formData.append("experienceCompany", data.experienceCompany?.trim() || "Not provided");
+      formData.append("experienceDuration", data.experienceDuration?.trim() || "Not provided");
+      formData.append("extraNotes", data.extraNotes?.trim() || "Not provided");
 
       const licenseFile = data.driverLicenseFile instanceof FileList && data.driverLicenseFile.length > 0 ? data.driverLicenseFile[0] : null;
       const abstractFile =
         data.abstractRecordFile instanceof FileList && data.abstractRecordFile.length > 0 ? data.abstractRecordFile[0] : null;
 
       if (licenseFile) {
-        formData.append("Drivers License Photo", licenseFile, licenseFile.name);
+        formData.append("driverLicenseFile", licenseFile, licenseFile.name);
       }
 
       if (abstractFile) {
-        formData.append("Abstract Drivers Record", abstractFile, abstractFile.name);
+        formData.append("abstractRecordFile", abstractFile, abstractFile.name);
       }
 
       formData.append("_template", "table");
       formData.append("_subject", "Join Us - Driver Application");
 
-      const response = await fetch("https://formsubmit.co/ajax/info@kidschoicenj.com", {
+      formData.append("_ajax", "1");
+
+      const response = await fetch("https://formsubmit.co/info@kidschoicenj.com", {
         method: "POST",
         body: formData,
+        redirect: "follow",
       });
 
-      const result = await response.json().catch(() => null);
+      let result: { success?: string } | null = null;
+      const contentType = response.headers.get("content-type");
+      if (contentType?.includes("application/json")) {
+        result = await response.json().catch(() => null);
+      }
 
       if (!response.ok || (result && result.success !== "true")) {
         throw new Error("Form submission failed");
@@ -251,7 +258,7 @@ const JoinUs = () => {
             )}
 
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" noValidate>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" noValidate encType="multipart/form-data">
                 <div className="grid md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
