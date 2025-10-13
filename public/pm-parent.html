@@ -1,9 +1,0 @@
-<!doctype html><meta charset="utf-8">
-<h1>Parent waiting…</h1>
-<p>Received: <span id="msg">none</span></p>
-<button onclick="win=open('https://cms-oauth-ochre.vercel.app/api/pm-test','pm','width=600,height=700')">Open Test Popup</button>
-<script>
-  window.addEventListener('message', (e) => {
-    document.getElementById('msg').textContent = `from ${e.origin}: ${String(e.data).slice(0,80)}`;
-  });
-</script>
