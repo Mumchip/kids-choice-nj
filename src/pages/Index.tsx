@@ -206,6 +206,36 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Join Our Team */}
+      <section className="py-24 bg-secondary">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto bg-card border border-border rounded-3xl shadow-medium p-10 md:p-14 text-center space-y-8">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Team</h2>
+              <p className="text-lg text-muted-foreground">
+                Our drivers and support staff are the heart of Kids Choice INC. Every team member undergoes extensive training, background
+                checks, and ongoing professional development. We hire people who genuinely care about the safety and comfort of our
+                passengers.
+              </p>
+            </div>
+            <div className="bg-accent/10 border border-accent/20 rounded-2xl p-8 space-y-6">
+              <div>
+                <h3 className="text-2xl font-semibold text-foreground mb-3">Join Our Team</h3>
+                <p className="text-muted-foreground">
+                  We're always looking for compassionate, safety-focused professionals to join our team. If you're interested in making a
+                  difference in your community, we'd love to hear from you.
+                </p>
+              </div>
+              <Link to="/join-us">
+                <Button size="lg" className="bg-hero-gradient hover:opacity-90">
+                  View Career Opportunities
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-light to-accent" />

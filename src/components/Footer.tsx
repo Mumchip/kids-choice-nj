@@ -47,6 +47,11 @@ const Footer = () => {
                   Fleet & Safety
                 </Link>
               </li>
+              <li>
+                <Link to="/join-us" className="text-muted-foreground hover:text-primary transition-colors">
+                  Join Us
+                </Link>
+              </li>
             </ul>
           </div>
 

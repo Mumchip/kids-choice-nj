@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Award, Heart, Shield, Users } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -135,31 +134,6 @@ const About = () => {
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-foreground mb-6">Our Team</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
-            Our drivers and support staff are the heart of Kids Choice INC. Every team member undergoes 
-            extensive training, background checks, and ongoing professional development. We hire people 
-            who genuinely care about the safety and comfort of our passengers.
-          </p>
-          <div className="bg-card border border-border rounded-lg p-8 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-semibold text-foreground mb-4">Join Our Team</h3>
-            <p className="text-muted-foreground mb-6">
-              We're always looking for compassionate, safety-focused professionals to join our team. 
-              If you're interested in making a difference in your community, we'd love to hear from you.
-            </p>
-            <Link 
-              to="/contact" 
-              className="inline-block bg-hero-gradient text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-            >
-              View Career Opportunities
-            </Link>
           </div>
         </div>
       </section>
