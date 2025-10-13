@@ -38,7 +38,7 @@ const About = () => {
               </p>
               <p>
                 Today, Kids Choice INC. is proud to serve hundreds of families, schools, and individuals throughout 
-                the metropolitan area. Our commitment to safety, accessibility, and compassionate service remains at 
+                Northern/Central New Jersey. Our commitment to safety, accessibility, and compassionate service remains at 
                 the heart of everything we do.
               </p>
             </div>
@@ -121,7 +121,7 @@ const About = () => {
                   <li>• First aid and CPR certified drivers</li>
                   <li>• Defensive driving certification</li>
                   <li>• Regular safety audits</li>
-                  <li>• GPS tracking and monitoring</li>
+                  <li>• Detailed route planning support</li>
                 </ul>
               </div>
               <div className="bg-card border border-border rounded-lg p-6">
@@ -154,7 +154,7 @@ const About = () => {
               If you're interested in making a difference in your community, we'd love to hear from you.
             </p>
             <a 
-              href="mailto:careers@kidschoiceinc.com" 
+              href="mailto:info@kidschoicenj.com" 
               className="inline-block bg-hero-gradient text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
             >
               View Career Opportunities

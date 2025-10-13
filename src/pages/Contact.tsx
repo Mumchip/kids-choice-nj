@@ -36,16 +36,42 @@ const Contact = () => {
   });
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log("Form data:", data);
-    toast({
-      title: "Message Sent Successfully!",
-      description: "Thank you for contacting us. We'll get back to you within 24 hours."
-    });
-    form.reset();
-    setIsSubmitting(false);
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/info@kidschoicenj.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          serviceType: data.serviceType,
+          message: data.message,
+          _subject: "New Kids Choice INC. Quote Request",
+          _template: "table"
+        })
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || (result && result.success !== "true")) {
+        throw new Error("Form submission failed");
+      }
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours."
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "We couldn't send your message. Please try again or email info@kidschoicenj.com."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -95,7 +121,7 @@ const Contact = () => {
                 }) => <FormItem>
                         <FormLabel>Phone Number *</FormLabel>
                         <FormControl>
-                          <Input type="tel" placeholder="(123) 456-7890" {...field} />
+                          <Input type="tel" placeholder="(973) 384-1425" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>} />
@@ -145,7 +171,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                    <a href="tel:+1234567890" className="text-primary hover:text-primary-light text-lg">(973) 563-2532</a>
+                    <a href="tel:+19733841425" className="text-primary hover:text-primary-light text-lg">(973) 384-1425</a>
                     <p className="text-sm text-muted-foreground mt-1">Available Monday - Sunday, 7:00 AM - 6:00 PM</p>
                   </div>
                 </div>
@@ -155,7 +181,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                    <a href="mailto:info@kidschoiceinc.com" className="text-primary hover:text-primary-light text-lg">info@kidschoicenj.com</a>
+                    <a href="mailto:info@kidschoicenj.com" className="text-primary hover:text-primary-light text-lg">info@kidschoicenj.com</a>
                     <p className="text-sm text-muted-foreground mt-1">
                       We respond within 24 hours
                     </p>
@@ -167,7 +193,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Service Area</h3>
-                    <p className="text-foreground text-lg">North/Central New Jersey</p>
+                    <p className="text-foreground text-lg">Northern/Central New Jersey</p>
                     <p className="text-sm text-muted-foreground mt-1">
                       Serving multiple counties and communities
                     </p>
@@ -195,9 +221,9 @@ const Contact = () => {
               <div className="bg-accent-gradient text-foreground rounded-xl p-8 shadow-medium">
                 <h3 className="text-2xl font-bold mb-4">Need Immediate Assistance?</h3>
                 <p className="mb-6">For urgent transportation needs or emergency scheduling, please call us directly. Our team is ready to help.</p>
-                <a href="tel:+1234567890">
+                <a href="tel:+19733841425">
                   <Button size="lg" variant="secondary" className="w-full">
-                    Call Now: (123) 456-7890
+                    Call Now: (973) 384-1425
                   </Button>
                 </a>
               </div>
@@ -211,7 +237,7 @@ const Contact = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-foreground mb-6">Our Service Area</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Kids Choice INC. proudly serves the greater metropolitan area and surrounding communities. 
+            Kids Choice INC. proudly serves Northern/Central New Jersey and surrounding communities. 
             Contact us to confirm service availability in your specific location.
           </p>
           <div className="bg-muted rounded-xl h-96 flex items-center justify-center">

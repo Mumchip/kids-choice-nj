@@ -50,7 +50,7 @@ const Fleet = () => {
                     "Low-floor entry for easy access",
                     "Comfortable seating for attendants/family",
                     "Spacious interior accommodating various wheelchair sizes",
-                    "GPS tracking and communication systems",
+                    "Two-way communication systems",
                     "ADA-compliant design and safety features",
                   ].map((feature, index) => (
                     <li key={index} className="flex items-start space-x-2">
@@ -82,8 +82,8 @@ const Fleet = () => {
                     "High-backed padded seats with seat belts",
                     "Reinforced steel construction",
                     "Emergency exits and safety equipment",
-                    "Interior and exterior cameras",
-                    "GPS tracking and route monitoring",
+                    "Extended visibility mirror systems",
+                    "Coordinated route management support",
                     "Stop-arm and crossing-gate safety systems",
                     "Regular DOT inspections and compliance",
                   ].map((feature, index) => (
@@ -161,10 +161,10 @@ const Fleet = () => {
               <div className="bg-card border border-border rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-foreground mb-4">Technology Features</h3>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>• Real-time GPS tracking</li>
-                  <li>• Interior and exterior cameras</li>
+                  <li>• Digital route planning tools</li>
+                  <li>• High-visibility interior lighting</li>
                   <li>• Electronic logging devices (ELD)</li>
-                  <li>• Backup cameras and sensors</li>
+                  <li>• Audible backup alarms and proximity alerts</li>
                   <li>• Digital dispatch systems</li>
                 </ul>
               </div>

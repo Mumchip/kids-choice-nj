@@ -17,7 +17,7 @@ const Index = () => {
     icon: Bus,
     title: "School Transportation",
     description: "Safe and reliable school bus services for students and districts.",
-    features: ["Licensed and certified drivers", "Modern, well-maintained fleet", "GPS tracking and safety monitoring", "Flexible routing options"]
+    features: ["Licensed and certified drivers", "Modern, well-maintained fleet", "Dedicated route coordination team", "Flexible routing options"]
   }, {
     icon: Shield,
     title: "Safety First",
@@ -229,9 +229,9 @@ const Index = () => {
                 Get a Free Quote
               </Button>
             </Link>
-            <a href="tel:+1234567890">
+            <a href="tel:+19733841425">
               <Button size="lg" variant="outline" className="text-lg border-2 border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-all font-semibold backdrop-blur-sm">
-                Call (123) 456-7890
+                Call (973) 384-1425
               </Button>
             </a>
           </div>

@@ -53,13 +53,13 @@ const SchoolTransportation = () => {
               </p>
               <p className="text-lg text-muted-foreground mb-6">
                 Our commitment to safety is unwavering. Every driver is thoroughly screened, trained, and certified. 
-                Every vehicle is meticulously maintained. Every route is carefully planned and monitored.
+                Every vehicle is meticulously maintained. Every route is carefully planned and reviewed.
               </p>
               <ul className="space-y-3">
                 {[
                   "Certified and experienced drivers",
                   "Modern, well-maintained school bus fleet",
-                  "GPS tracking and route optimization",
+                  "Route optimization and dispatch support",
                   "Door-to-door service options",
                   "Flexible contracts for schools and districts",
                   "Special needs accommodations available",
@@ -94,7 +94,7 @@ const SchoolTransportation = () => {
               <Clock className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold text-foreground mb-3">On-Time, Every Time</h3>
               <p className="text-muted-foreground">
-                We understand the importance of punctuality. Our GPS-tracked routes and experienced dispatchers 
+                We understand the importance of punctuality. Our carefully planned routes and experienced dispatchers 
                 ensure students arrive at school and home on time, every single day.
               </p>
             </div>
@@ -126,7 +126,7 @@ const SchoolTransportation = () => {
               <Bus className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold text-foreground mb-3">Modern Fleet</h3>
               <p className="text-muted-foreground">
-                Well-maintained, clean buses with safety features including seat belts, GPS tracking, cameras, 
+                Well-maintained, clean buses with safety features including seat belts, enhanced mirror systems, 
                 and regular DOT inspections.
               </p>
             </div>
@@ -164,7 +164,7 @@ const SchoolTransportation = () => {
                 <li>• Customized pickup/drop-off locations</li>
                 <li>• Flexible scheduling for unique calendars</li>
                 <li>• Athletic and extracurricular trips</li>
-                <li>• Parent communication and tracking</li>
+                <li>• Parent communication updates</li>
               </ul>
             </div>
             <div className="bg-card border border-border rounded-lg p-8 hover:shadow-medium transition-all">
@@ -213,15 +213,15 @@ const SchoolTransportation = () => {
             <div className="flex items-start space-x-4">
               <div className="w-3 h-3 bg-primary rounded-full mt-2 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold text-foreground mb-1">GPS Tracking</h3>
-                <p className="text-sm text-muted-foreground">Real-time location tracking for all buses with route monitoring.</p>
+                <h3 className="font-semibold text-foreground mb-1">Route Management</h3>
+                <p className="text-sm text-muted-foreground">Coordinated routing and dispatch support for every bus.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
               <div className="w-3 h-3 bg-primary rounded-full mt-2 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold text-foreground mb-1">Onboard Cameras</h3>
-                <p className="text-sm text-muted-foreground">Interior and exterior cameras for safety and accountability.</p>
+                <h3 className="font-semibold text-foreground mb-1">Onboard Safety Checks</h3>
+                <p className="text-sm text-muted-foreground">Regular interior and exterior inspections for safety and accountability.</p>
               </div>
             </div>
             <div className="flex items-start space-x-4">
@@ -265,9 +265,9 @@ const SchoolTransportation = () => {
                 Request a Quote
               </Button>
             </Link>
-            <a href="tel:+1234567890">
+            <a href="tel:+19733841425">
               <Button size="lg" variant="outline" className="text-lg border-white text-white hover:bg-white/10">
-                Call (123) 456-7890
+                Call (973) 384-1425
               </Button>
             </a>
           </div>

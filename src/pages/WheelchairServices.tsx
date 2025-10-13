@@ -257,9 +257,9 @@ const WheelchairServices = () => {
                 Request Service
               </Button>
             </Link>
-            <a href="tel:+1234567890">
+            <a href="tel:+19733841425">
               <Button size="lg" variant="outline" className="text-lg border-white text-white hover:bg-white/10">
-                Call (123) 456-7890
+                Call (973) 384-1425
               </Button>
             </a>
           </div>

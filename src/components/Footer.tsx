@@ -71,21 +71,21 @@ const Footer = () => {
                 <Phone className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <p className="text-muted-foreground">Phone:</p>
-                  <a href="tel:+1234567890" className="text-foreground hover:text-primary transition-colors">(973) 563-2532</a>
+                  <a href="tel:+19733841425" className="text-foreground hover:text-primary transition-colors">(973) 384-1425</a>
                 </div>
               </li>
               <li className="flex items-start space-x-2">
                 <Mail className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <p className="text-muted-foreground">Email:</p>
-                  <a href="mailto:info@kidschoiceinc.com" className="text-foreground hover:text-primary transition-colors">info@kidschoicenj.com</a>
+                  <a href="mailto:info@kidschoicenj.com" className="text-foreground hover:text-primary transition-colors">info@kidschoicenj.com</a>
                 </div>
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <p className="text-muted-foreground">Service Area:</p>
-                  <p className="text-foreground">Metropolitan Area</p>
+                  <p className="text-foreground">Northern/Central New Jersey</p>
                 </div>
               </li>
             </ul>

@@ -50,9 +50,9 @@ const Navbar = () => {
 
           {/* Contact Button */}
           <div className="hidden lg:flex items-center space-x-4">
-            <a href="tel:+1234567890" className="flex items-center space-x-2 text-primary hover:text-primary-light transition-colors">
+            <a href="tel:+19733841425" className="flex items-center space-x-2 text-primary hover:text-primary-light transition-colors">
               <Phone className="w-4 h-4" />
-              <span className="font-semibold">(973) 563-2532</span>
+              <span className="font-semibold">(973) 384-1425</span>
             </a>
             <Link to="/contact">
               <Button className="bg-accent-gradient hover:opacity-90 transition-opacity">
@@ -75,9 +75,9 @@ const Navbar = () => {
                 </Button>
               </Link>)}
             <div className="pt-4 space-y-2">
-              <a href="tel:+1234567890" className="flex items-center justify-center space-x-2 text-primary font-semibold py-2">
+              <a href="tel:+19733841425" className="flex items-center justify-center space-x-2 text-primary font-semibold py-2">
                 <Phone className="w-4 h-4" />
-                <span>(123) 456-7890</span>
+                <span>(973) 384-1425</span>
               </a>
               <Link to="/contact" onClick={() => setIsOpen(false)}>
                 <Button className="w-full bg-accent-gradient hover:opacity-90">
