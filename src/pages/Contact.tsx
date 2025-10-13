@@ -233,18 +233,22 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Service Area Map Placeholder */}
+      {/* Service Area Map */}
       <section className="py-20 bg-secondary">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-foreground mb-6">Our Service Area</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-6">My Service Area</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Kids Choice INC. proudly serves Northern/Central New Jersey and surrounding communities. 
-            Contact us to confirm service availability in your specific location.
+            Kids Choice INC. proudly serves Northern and Central New Jersey. Contact us to confirm availability in your specific location.
           </p>
-          <div className="bg-muted rounded-xl h-96 flex items-center justify-center">
-            <p className="text-muted-foreground">
-              [Service area map would be integrated here with Google Maps or similar service]
-            </p>
+          <div className="max-w-5xl mx-auto">
+            <iframe
+              className="w-full h-[320px] md:h-[450px] rounded-3xl border-0 shadow-medium"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1502291.309584143!2d-76.04357186579821!3d40.065649532981375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c0fb959e00409f%3A0x2cd27b07f83f6d8d!2sNew%20Jersey!5e1!3m2!1sen!2sus!4v1760387812500!5m2!1sen!2sus"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="New Jersey service area map"
+            />
           </div>
         </div>
       </section>
