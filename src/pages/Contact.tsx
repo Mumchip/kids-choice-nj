@@ -37,26 +37,27 @@ const Contact = () => {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://formsubmit.co/ajax/info@kidschoicenj.com", {
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("phone", data.phone);
+      formData.append("serviceType", data.serviceType);
+      formData.append("message", data.message);
+      formData.append("_subject", "New Kids Choice INC. Contact Request");
+
+      const response = await fetch("https://formspree.io/f/mwprwgjb", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Accept: "application/json"
         },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          serviceType: data.serviceType,
-          message: data.message,
-          _subject: "New Kids Choice INC. Quote Request",
-          _template: "table"
-        })
+        body: formData
       });
+
       const result = await response.json().catch(() => null);
-      if (!response.ok || (result && result.success !== "true")) {
+      if (!response.ok || (result && result.ok !== true)) {
         throw new Error("Form submission failed");
       }
+
       toast({
         title: "Message Sent Successfully!",
         description: "Thank you for contacting us. We'll get back to you within 24 hours."

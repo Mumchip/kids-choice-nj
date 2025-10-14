@@ -21,7 +21,7 @@ const Navbar = () => {
     name: "Fleet & Safety",
     path: "/fleet"
   }, {
-    name: "Join Us",
+    name: "Join Our Team",
     path: "/join-us"
   }, {
     name: "Contact",

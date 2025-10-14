@@ -171,31 +171,31 @@ const JoinUs = () => {
         data.abstractRecordFile instanceof FileList && data.abstractRecordFile.length > 0 ? data.abstractRecordFile[0] : null;
 
       if (licenseFile) {
-        formData.append("driverLicenseFile", licenseFile, licenseFile.name);
+        formData.append("upload", licenseFile, licenseFile.name);
       }
 
       if (abstractFile) {
-        formData.append("abstractRecordFile", abstractFile, abstractFile.name);
+        formData.append("abstractRecord", abstractFile, abstractFile.name);
       }
 
       formData.append("_template", "table");
-      formData.append("_subject", "Join Us - Driver Application");
+      formData.append("_subject", "Join Our Team - Driver Application");
 
-      formData.append("_ajax", "1");
-
-      const response = await fetch("https://formsubmit.co/info@kidschoicenj.com", {
+      const response = await fetch("https://formspree.io/f/mblzpnbp", {
         method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
         body: formData,
         redirect: "follow",
       });
-
-      let result: { success?: string } | null = null;
+      let result: { ok?: boolean } | null = null;
       const contentType = response.headers.get("content-type");
       if (contentType?.includes("application/json")) {
         result = await response.json().catch(() => null);
       }
 
-      if (!response.ok || (result && result.success !== "true")) {
+      if (!response.ok || (result && result.ok !== true)) {
         throw new Error("Form submission failed");
       }
 

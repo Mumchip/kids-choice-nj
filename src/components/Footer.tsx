@@ -49,7 +49,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/join-us" className="text-muted-foreground hover:text-primary transition-colors">
-                  Join Us
+                  Join Our Team
                 </Link>
               </li>
             </ul>
