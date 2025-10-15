@@ -103,7 +103,9 @@ function buildMessageText(fields: Record<string, string | undefined>) {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method?.toUpperCase() !== "POST") {
+  const method = typeof req.method === "string" ? req.method.toUpperCase() : "";
+
+  if (method !== "POST") {
     res.setHeader("Allow", "POST");
     res.status(405).json({ ok: false, error: "Method not allowed" });
     return;
