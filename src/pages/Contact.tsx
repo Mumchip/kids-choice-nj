@@ -43,9 +43,7 @@ const Contact = () => {
       formData.append("phone", data.phone);
       formData.append("serviceType", data.serviceType);
       formData.append("message", data.message);
-      formData.append("_subject", "New Kids Choice INC. Contact Request");
-
-      const response = await fetch("https://formspree.io/f/mwprwgjb", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           Accept: "application/json"
@@ -54,8 +52,8 @@ const Contact = () => {
       });
 
       const result = await response.json().catch(() => null);
-      if (!response.ok || (result && result.ok !== true)) {
-        throw new Error("Form submission failed");
+      if (!response.ok || !result || result.ok !== true) {
+        throw new Error(result?.error || "Form submission failed");
       }
 
       toast({

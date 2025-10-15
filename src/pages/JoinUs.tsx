@@ -46,19 +46,6 @@ const formSchema = z
     const licenseFile = data.driverLicenseFile instanceof FileList && data.driverLicenseFile.length > 0 ? data.driverLicenseFile[0] : null;
     const abstractFile = data.abstractRecordFile instanceof FileList && data.abstractRecordFile.length > 0 ? data.abstractRecordFile[0] : null;
 
-    if (!licenseFile && !abstractFile) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Please upload at least one supporting document.",
-        path: ["driverLicenseFile"],
-      });
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Please upload at least one supporting document.",
-        path: ["abstractRecordFile"],
-      });
-    }
-
     if (licenseFile) {
       if (!ACCEPTED_FILE_TYPES.includes(licenseFile.type)) {
         ctx.addIssue({
@@ -178,16 +165,12 @@ const JoinUs = () => {
         formData.append("abstractRecord", abstractFile, abstractFile.name);
       }
 
-      formData.append("_template", "table");
-      formData.append("_subject", "Join Our Team - Driver Application");
-
-      const response = await fetch("https://formspree.io/f/mblzpnbp", {
+      const response = await fetch("/api/driver", {
         method: "POST",
         headers: {
           Accept: "application/json",
         },
         body: formData,
-        redirect: "follow",
       });
       let result: { ok?: boolean } | null = null;
       const contentType = response.headers.get("content-type");
@@ -195,8 +178,8 @@ const JoinUs = () => {
         result = await response.json().catch(() => null);
       }
 
-      if (!response.ok || (result && result.ok !== true)) {
-        throw new Error("Form submission failed");
+      if (!response.ok || !result || result.ok !== true) {
+        throw new Error(result?.error || "Form submission failed");
       }
 
       setSubmissionFeedback("success");
