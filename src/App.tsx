@@ -11,6 +11,7 @@ import Fleet from "./pages/Fleet";
 import Contact from "./pages/Contact";
 import JoinUs from "./pages/JoinUs";
 import NotFound from "./pages/NotFound";
+import ScrollManager from "./components/ScrollManager";
 
 const queryClient = new QueryClient();
 
@@ -20,17 +21,20 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/wheelchair-services" element={<WheelchairServices />} />
-          <Route path="/school-transportation" element={<SchoolTransportation />} />
-          <Route path="/fleet" element={<Fleet />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/join-us" element={<JoinUs />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <ScrollManager />
+        <main id="main-content" tabIndex={-1}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/wheelchair-services" element={<WheelchairServices />} />
+            <Route path="/school-transportation" element={<SchoolTransportation />} />
+            <Route path="/fleet" element={<Fleet />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/join-us" element={<JoinUs />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
