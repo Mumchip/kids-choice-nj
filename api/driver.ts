@@ -3,7 +3,7 @@ import { IncomingForm } from "formidable";
 import type { Fields, Files, File } from "formidable";
 import fs from "fs/promises";
 import path from "path";
-import { sendMail } from "./_mailer";
+import { sendMail } from "./_mailer.js";
 
 const MAX_DRIVER_FILE_BYTES = 15 * 1024 * 1024;
 
