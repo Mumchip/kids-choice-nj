@@ -218,7 +218,7 @@ const Index = () => {
                 passengers.
               </p>
             </div>
-            <div className="bg-accent/10 border border-accent/20 rounded-2xl p-8 space-y-6">
+            <div className="bg-accent/10 border border-accent/20 rounded-2xl p-8">
               <div>
                 <h3 className="text-2xl font-semibold text-foreground mb-3">Join Our Team</h3>
                 <p className="text-muted-foreground">
@@ -226,7 +226,7 @@ const Index = () => {
                   difference in your community, we'd love to hear from you.
                 </p>
               </div>
-              <Link to="/join-us">
+              <Link to="/join-us" className="inline-block mt-4">
                 <Button size="lg" className="bg-hero-gradient hover:opacity-90">
                   View Career Opportunities
                 </Button>
