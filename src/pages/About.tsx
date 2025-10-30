@@ -31,10 +31,10 @@ const About = () => {
                 and wheelchair-accessible mobility services.
               </p>
               <p>
-                Over the years, we recognized a critical need in our community — individuals with mobility challenges 
+                Over the years, we recognized a critical need in our community &mdash; individuals with mobility challenges 
                 often struggled to find reliable, compassionate transportation. This led us to expand our services to 
                 include specialized wheelchair-accessible vehicles and trained staff who understand that transportation 
-                is about more than just getting from one place to another — it's about independence, dignity, and care.
+                is about more than just getting from one place to another &mdash; it's about independence, dignity, and care.
               </p>
               <p>
                 Today, Kids Choice INC. is proud to serve hundreds of families, schools, and individuals throughout 
@@ -100,37 +100,37 @@ const About = () => {
               <div className="bg-card border border-border rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-foreground mb-3">Licensing & Insurance</h3>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>• State-licensed school bus operator</li>
-                  <li>• Fully insured and bonded</li>
-                  <li>• DOT certified vehicles</li>
-                  <li>• Commercial driver licensing (CDL)</li>
+                  <li>State-licensed school bus operator</li>
+                  <li>Fully insured and bonded</li>
+                  <li>DOT certified vehicles</li>
+                  <li>Commercial driver licensing (CDL)</li>
                 </ul>
               </div>
               <div className="bg-card border border-border rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-foreground mb-3">ADA Compliance</h3>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>• ADA-compliant vehicles and service</li>
-                  <li>• Wheelchair accessibility certified</li>
-                  <li>• Mobility assistance training</li>
-                  <li>• Equal opportunity provider</li>
+                  <li>ADA-compliant vehicles and service</li>
+                  <li>Wheelchair accessibility certified</li>
+                  <li>Mobility assistance training</li>
+                  <li>Equal opportunity provider</li>
                 </ul>
               </div>
               <div className="bg-card border border-border rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-foreground mb-3">Safety Standards</h3>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>• First aid and CPR certified drivers</li>
-                  <li>• Defensive driving certification</li>
-                  <li>• Regular safety audits</li>
-                  <li>• Detailed route planning support</li>
+                  <li>First aid and CPR certified drivers</li>
+                  <li>Defensive driving certification</li>
+                  <li>Regular safety audits</li>
+                  <li>Detailed route planning support</li>
                 </ul>
               </div>
               <div className="bg-card border border-border rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-foreground mb-3">Background Checks</h3>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>• Comprehensive background screening</li>
-                  <li>• Drug and alcohol testing</li>
-                  <li>• Annual driver record reviews</li>
-                  <li>• Child safety clearances</li>
+                  <li>Comprehensive background screening</li>
+                  <li>Drug and alcohol testing</li>
+                  <li>Annual driver record reviews</li>
+                  <li>Child safety clearances</li>
                 </ul>
               </div>
             </div>

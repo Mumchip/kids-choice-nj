@@ -14,7 +14,7 @@ const Footer = () => {
             </div>
             <p className="text-sm text-muted-foreground mb-4">Licensed transportation services specializing in wheelchair-accessible transport and school bus services since 1998.</p>
             <p className="text-xs text-muted-foreground">
-              © 2025 Kids Choice INC. All rights reserved.
+              &copy; 2025 Kids Choice INC. All rights reserved.
             </p>
           </div>
 
