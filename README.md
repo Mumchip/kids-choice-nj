@@ -1,4 +1,4 @@
-# ♿ Accessible Journeys INC
+# Kids Choice INC
 
 A modern marketing and operations site built for a wheelchair-accessible transportation company in New Jersey.  
 This project delivers a clean public experience with practical, production-ready functionality. Visitors can learn about services, submit contact forms, or apply for driving positions, and those submissions go directly to the team’s inbox.
