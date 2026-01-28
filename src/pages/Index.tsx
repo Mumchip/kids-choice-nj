@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import ServiceCard from "@/components/ServiceCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-accessible-van.jpg";
+import heroImage from "@/assets/hero-accessible-van.png";
 import caringService from "@/assets/caring-service.jpg";
 const Index = () => {
   const services = [{
