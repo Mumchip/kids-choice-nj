@@ -1,38 +1,35 @@
-import { LucideIcon } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import CheckList from "@/components/CheckList";
+import { cn } from "@/lib/utils";
 
 interface ServiceCardProps {
-  icon: LucideIcon;
   title: string;
   description: string;
-  features: string[];
+  features: readonly string[];
+  image: { src: string; alt: string };
+  link: { to: string; label: string };
+  className?: string;
+  imageClassName?: string;
 }
 
-const ServiceCard = ({ icon: Icon, title, description, features }: ServiceCardProps) => {
-  return (
-    <Card className="group hover-lift hover-glow border-2 hover:border-primary/30 overflow-hidden relative bg-gradient-to-br from-background via-background to-secondary/40">
-      <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-500" />
-      <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-500" />
-      
-      <CardHeader className="relative">
-        <div className="w-16 h-16 bg-gradient-to-br from-primary via-primary-light to-accent rounded-2xl flex items-center justify-center mb-4 shadow-medium group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-          <Icon className="w-8 h-8 text-white" />
-        </div>
-        <CardTitle className="text-xl group-hover:text-primary transition-colors">{title}</CardTitle>
-        <CardDescription className="text-base">{description}</CardDescription>
-      </CardHeader>
-      <CardContent className="relative">
-        <ul className="space-y-2">
-          {features.map((feature, index) => (
-            <li key={index} className="flex items-start space-x-2">
-              <span className="text-accent mt-1 font-bold">✓</span>
-              <span className="text-sm text-muted-foreground">{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </CardContent>
-    </Card>
-  );
-};
+/** A service panel: photo on top, then a short pitch, four facts and a link to the full service page. */
+const ServiceCard = ({ title, description, features, image, link, className, imageClassName }: ServiceCardProps) => (
+  <article className={cn("reveal flex flex-col", className)}>
+    <div className={cn("photo aspect-[4/3]", imageClassName)}>
+      <img src={image.src} alt={image.alt} loading="lazy" width={1200} height={900} />
+    </div>
+    <h3 className="display-lg mt-7">{title}</h3>
+    <p className="mt-3 max-w-[38rem] text-muted-foreground">{description}</p>
+    <CheckList items={features} className="mt-6 sm:grid-cols-2" />
+    <Link
+      to={link.to}
+      className="nudge mt-8 inline-flex w-fit items-center gap-2 rounded-full font-bold underline decoration-bus decoration-[3px] underline-offset-[6px] hover:decoration-foreground"
+    >
+      {link.label}
+      <ArrowRight className="h-[1.125rem] w-[1.125rem]" aria-hidden="true" />
+    </Link>
+  </article>
+);
 
 export default ServiceCard;

@@ -1,28 +1,43 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Quote } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface TestimonialCardProps {
   quote: string;
   author: string;
   role: string;
+  featured?: boolean;
+  className?: string;
 }
 
-const TestimonialCard = ({ quote, author, role }: TestimonialCardProps) => {
-  return (
-    <Card className="h-full hover-lift border-2 hover:border-primary/20 relative overflow-hidden bg-gradient-to-br from-background via-secondary/20 to-primary/5">
-      <div className="absolute top-0 right-0 w-24 h-24 bg-accent/10 rounded-full blur-2xl" />
-      <CardContent className="pt-6 relative">
-        <div className="w-14 h-14 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mb-4 shadow-medium">
-          <Quote className="w-7 h-7 text-white" />
-        </div>
-        <p className="text-foreground mb-6 italic leading-relaxed">"{quote}"</p>
-        <div className="border-t-2 border-primary/10 pt-4">
-          <p className="font-bold text-foreground text-lg">{author}</p>
-          <p className="text-sm text-muted-foreground font-medium">{role}</p>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+/** A short client quote. The featured variant is set large in the display face. */
+const TestimonialCard = ({ quote, author, role, featured = false, className }: TestimonialCardProps) => (
+  <figure
+    className={cn(
+      "reveal flex h-full flex-col justify-between rounded-card",
+      featured ? "bg-secondary p-8 sm:p-10 lg:p-12" : "border p-7 sm:p-8",
+      className,
+    )}
+  >
+    <blockquote>
+      <p
+        className={cn(
+          featured
+            ? "font-display text-[1.625rem] font-bold leading-[1.25] tracking-[-0.01em] sm:text-[2rem] lg:text-[2.25rem]"
+            : "text-[1.125rem] leading-relaxed",
+        )}
+      >
+        <span aria-hidden="true">&ldquo;</span>
+        {quote}
+        <span aria-hidden="true">&rdquo;</span>
+      </p>
+    </blockquote>
+    <figcaption className={cn("flex items-center gap-3", featured ? "mt-10" : "mt-8")}>
+      <span className="h-8 w-1.5 rounded-full bg-bus" aria-hidden="true" />
+      <span>
+        <span className="block font-bold">{author}</span>
+        <span className="block text-[0.9375rem] text-muted-foreground">{role}</span>
+      </span>
+    </figcaption>
+  </figure>
+);
 
 export default TestimonialCard;

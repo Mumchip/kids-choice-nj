@@ -1,273 +1,227 @@
 import { Link } from "react-router-dom";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Accessibility, ArrowRight, Calendar, Clock, Heart, MapPin, Phone, Shield, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Accessibility, Heart, Calendar, MapPin, Clock, Shield } from "lucide-react";
-import caringService from "@/assets/caring-service.jpg";
-import vanInterior from "@/assets/van-interior.jpg";
+import CallBlock from "@/components/CallBlock";
+import CheckList from "@/components/CheckList";
+import PageHero from "@/components/PageHero";
+import { usePageTitle } from "@/hooks/use-page-title";
+import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
+import vanLiftBoarding from "@/assets/van-lift-boarding.jpg";
+import vanLiftDetail from "@/assets/van-lift-detail.jpg";
+
+const highlights = [
+  "Lift-equipped and ramp-accessible vans",
+  "Trained mobility assistance specialists",
+  "Door-to-door service with assistance",
+  "Medical appointment coordination",
+  "Flexible scheduling options",
+  "ADA-compliant vehicles and service",
+];
+
+const vehicleFeatures = [
+  {
+    icon: Accessibility,
+    title: "Wheelchair lifts and ramps",
+    text: "Hydraulic lifts and ramps for safe, easy boarding. Fits all wheelchair sizes and types.",
+  },
+  {
+    icon: Shield,
+    title: "Secure restraint systems",
+    text: "Wheelchair restraint systems that meet all safety standards for secure transport.",
+  },
+  {
+    icon: Heart,
+    title: "Comfort and cleanliness",
+    text: "Climate-controlled interiors, smooth suspension and a full cleaning after every trip.",
+  },
+];
+
+const services = [
+  {
+    icon: Calendar,
+    title: "Medical appointments",
+    text: "Doctor visits, therapy sessions, dialysis and other appointments, on time.",
+  },
+  {
+    icon: MapPin,
+    title: "Daily activities",
+    text: "Shopping, errands, social visits and recreation. Wherever you need to go.",
+  },
+  {
+    icon: Clock,
+    title: "Flexible scheduling",
+    text: "One-time trips, recurring appointments or a regular weekly schedule.",
+  },
+  {
+    icon: Heart,
+    title: "Personal assistance",
+    text: "Door-to-door help with loading, unloading and securing wheelchairs.",
+  },
+  {
+    icon: Shield,
+    title: "Senior transportation",
+    text: "Patient care for older passengers who use walkers, wheelchairs or other devices.",
+  },
+  {
+    icon: Users,
+    title: "Group transportation",
+    text: "Accessible transport for day programs and community outings.",
+  },
+];
+
+const steps = [
+  {
+    title: "Contact us",
+    text: "Call, email or use the online form. We answer your questions and give you a quote.",
+  },
+  {
+    title: "Schedule your ride",
+    text: "We set up one-time trips or recurring appointments that fit your schedule.",
+  },
+  {
+    title: "Get a confirmation",
+    text: "You receive a confirmation of your ride and a reminder before pick-up.",
+  },
+  {
+    title: "Ride with us",
+    text: "Your driver arrives on time, helps with boarding and gets you there safely.",
+  },
+];
 
 const WheelchairServices = () => {
+  usePageTitle("Wheelchair Services");
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
+    <>
+      <PageHero
+        eyebrow="Wheelchair & mobility services"
+        title="Rides that start at your door."
+        lead="Safe, dignified transportation for wheelchair users and anyone with mobility needs, with a trained driver at every step."
+        image={{
+          src: vanLiftBoarding,
+          alt: "A driver standing beside a white accessible van as its side lift raises a woman in a wheelchair",
+          position: "45% 70%",
+        }}
+        actions={
+          <>
+            <Button asChild size="lg" className="nudge">
+              <Link to="/contact">
+                Request a quote
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <a href={PHONE_HREF}>
+                <Phone aria-hidden="true" />
+                {PHONE_DISPLAY}
+              </a>
+            </Button>
+          </>
+        }
+      />
 
-      {/* Hero Section */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Accessibility className="w-16 h-16 text-primary mx-auto mb-6" />
-            <h1 className="text-5xl font-bold text-foreground mb-6 animate-fade-in">
-              Wheelchair & Mobility Transportation Services
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8 animate-slide-up">
-              Safe, accessible, and compassionate transportation for wheelchair users and individuals 
-              with mobility challenges. Independence starts with reliable transportation.
+      {/* Overview */}
+      <section className="border-t">
+        <div className="container-site grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-6">
+            <h2 className="display-xl">Specialized accessible transportation</h2>
+            <p className="lead mt-6">
+              Accessible transportation is essential for independence, healthcare and quality of life. Our vans and trained staff
+              give people with mobility needs a safe, dignified way to get around.
             </p>
-            <Link to="/contact">
-              <Button size="lg" className="bg-hero-gradient hover:opacity-90">
-                Schedule a Ride
-              </Button>
-            </Link>
+            <p className="mt-5 text-muted-foreground">
+              Medical appointments, social events, shopping or daily activities: our team treats every passenger with respect,
+              patience and care.
+            </p>
+          </div>
+          <div className="reveal rounded-card bg-secondary p-7 sm:p-10 lg:col-span-6">
+            <h3 className="display-md">Every ride includes</h3>
+            <CheckList items={highlights} className="mt-6" />
           </div>
         </div>
       </section>
 
-      {/* Service Overview */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-foreground mb-6">
-                Specialized Accessible Transportation
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                At Kids Choice INC., we understand that accessible transportation is essential for independence, 
-                healthcare access, and quality of life. Our wheelchair-accessible vehicles and trained staff 
-                provide safe, dignified transport for individuals with mobility needs.
-              </p>
-              <p className="text-lg text-muted-foreground mb-6">
-                Whether you need transportation to medical appointments, social events, shopping, or daily activities, 
-                our team is here to help. We treat every passenger with respect, patience, and genuine care.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Lift-equipped and ramp-accessible vans",
-                  "Trained mobility assistance specialists",
-                  "Door-to-door service with assistance",
-                  "Medical appointment coordination",
-                  "Flexible scheduling options",
-                  "ADA-compliant vehicles and service",
-                ].map((item, index) => (
-                  <li key={index} className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-primary rounded-full" />
-                    <span className="text-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-2xl overflow-hidden shadow-medium">
-              <img
-                src={caringService}
-                alt="Professional care and assistance"
-                className="w-full h-full object-cover"
-              />
-            </div>
+      {/* Vehicles */}
+      <section className="container-site pb-20 md:pb-28" aria-labelledby="vehicles-heading">
+        <h2 id="vehicles-heading" className="display-xl max-w-2xl">
+          Vans built around the wheelchair
+        </h2>
+        <div className="mt-12 grid gap-5 lg:grid-cols-12">
+          <div className="photo reveal aspect-[4/3] lg:col-span-7 lg:aspect-auto lg:min-h-[32rem]">
+            <img
+              src={vanLiftDetail}
+              alt="The rear wheelchair lift of a black van lowered to the ground, with yellow safety edges"
+              loading="lazy"
+              width={1800}
+              height={1200}
+            />
           </div>
+          <ul className="grid gap-5 lg:col-span-5">
+            {vehicleFeatures.map(({ icon: Icon, title, text }, index) => (
+              <li
+                key={title}
+                className={`reveal flex gap-5 rounded-card p-6 sm:p-7 ${index === 0 ? "on-bus bg-bus text-asphalt" : "border"}`}
+              >
+                <Icon className="mt-1 h-7 w-7 shrink-0" aria-hidden="true" />
+                <div>
+                  <h3 className="display-md">{title}</h3>
+                  <p className={`mt-2 ${index === 0 ? "text-asphalt/85" : "text-muted-foreground"}`}>{text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* Vehicle Features */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 rounded-2xl overflow-hidden shadow-medium">
-              <img
-                src={vanInterior}
-                alt="Accessible van interior with safety features"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
-              <h2 className="text-4xl font-bold text-foreground mb-6">
-                State-of-the-Art Accessible Vehicles
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Our fleet of wheelchair-accessible vans is equipped with the latest safety and comfort features 
-                to ensure a smooth, secure ride for all passengers.
-              </p>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-hero-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Accessibility className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">Wheelchair Lifts & Ramps</h3>
-                    <p className="text-muted-foreground">
-                      Hydraulic lifts and ramps for safe, easy boarding. Accommodates all wheelchair sizes and types.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-hero-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">Secure Restraint Systems</h3>
-                    <p className="text-muted-foreground">
-                      Advanced wheelchair restraint systems that meet all safety standards for secure transport.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-hero-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Heart className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">Comfort & Cleanliness</h3>
-                    <p className="text-muted-foreground">
-                      Climate-controlled interiors, smooth suspension, and thorough sanitization after every trip.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services We Provide */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-foreground text-center mb-12">
-            Mobility Services We Provide
+      {/* Services */}
+      <section className="bg-secondary/60 py-20 md:py-28" aria-labelledby="mobility-services-heading">
+        <div className="container-site">
+          <h2 id="mobility-services-heading" className="display-xl max-w-2xl">
+            Where we take people
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-all">
-              <Calendar className="w-10 h-10 text-primary mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-3">Medical Appointments</h3>
-              <p className="text-muted-foreground">
-                Reliable transportation to doctor visits, therapy sessions, dialysis, and other medical appointments.
-              </p>
-            </div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-all">
-              <MapPin className="w-10 h-10 text-primary mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-3">Daily Activities</h3>
-              <p className="text-muted-foreground">
-                Shopping, errands, social visits, and recreation — wherever you need to go, we'll get you there.
-              </p>
-            </div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-all">
-              <Clock className="w-10 h-10 text-primary mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-3">Flexible Scheduling</h3>
-              <p className="text-muted-foreground">
-                One-time trips, recurring appointments, or regular schedules — we accommodate your needs.
-              </p>
-            </div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-all">
-              <Heart className="w-10 h-10 text-primary mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-3">Personal Assistance</h3>
-              <p className="text-muted-foreground">
-                Our drivers provide door-to-door service with assistance loading, unloading, and securing wheelchairs.
-              </p>
-            </div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-all">
-              <Shield className="w-10 h-10 text-primary mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-3">Senior Transportation</h3>
-              <p className="text-muted-foreground">
-                Specialized care for elderly passengers with mobility devices, walkers, and wheelchairs.
-              </p>
-            </div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-medium transition-all">
-              <Accessibility className="w-10 h-10 text-primary mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-3">Group Transportation</h3>
-              <p className="text-muted-foreground">
-                Accessible transport for groups, day programs, and community outings for individuals with disabilities.
-              </p>
-            </div>
-          </div>
+          <ul className="mt-12 grid gap-px overflow-hidden rounded-card border bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {services.map(({ icon: Icon, title, text }) => (
+              <li key={title} className="bg-background p-7 sm:p-8">
+                <span className="grid h-12 w-12 place-items-center rounded-full bg-secondary" aria-hidden="true">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <h3 className="display-md mt-5">{title}</h3>
+                <p className="mt-2 text-muted-foreground">{text}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-foreground text-center mb-12">How It Works</h2>
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-accent-gradient rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">
-                1
+      {/* How it works */}
+      <section className="container-site py-20 md:py-28" aria-labelledby="how-heading">
+        <h2 id="how-heading" className="display-xl">
+          How booking works
+        </h2>
+        <ol className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {steps.map((item, index) => (
+            <li key={item.title} className="reveal relative">
+              <div className="flex items-center gap-4">
+                <span
+                  className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-bus font-display text-xl font-extrabold text-asphalt"
+                  aria-hidden="true"
+                >
+                  {index + 1}
+                </span>
+                {index < steps.length - 1 && <span className="hidden h-0.5 flex-1 bg-border lg:block" aria-hidden="true" />}
               </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-2">Contact Us</h3>
-                <p className="text-lg text-muted-foreground">
-                  Call, email, or use our online form to discuss your transportation needs. 
-                  We'll answer any questions and provide a quote.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-accent-gradient rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">
-                2
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-2">Schedule Your Ride</h3>
-                <p className="text-lg text-muted-foreground">
-                  We'll work with you to set up one-time trips or recurring appointments that fit your schedule.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-accent-gradient rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">
-                3
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-2">Confirmation & Reminder</h3>
-                <p className="text-lg text-muted-foreground">
-                  You'll receive confirmation of your ride and reminders before pick-up time.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-accent-gradient rounded-full flex items-center justify-center flex-shrink-0 text-xl font-bold">
-                4
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-2">Safe, Reliable Transport</h3>
-                <p className="text-lg text-muted-foreground">
-                  Our trained driver arrives on time, assists with boarding, and ensures a safe, comfortable journey.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+              <h3 className="display-md mt-5">{item.title}</h3>
+              <p className="mt-2 text-muted-foreground">{item.text}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-hero-gradient text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            Ready to Experience Accessible, Compassionate Transportation?
-          </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Contact us today to schedule your first ride or to learn more about our wheelchair-accessible services.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" variant="secondary" className="text-lg">
-                Request Service
-              </Button>
-            </Link>
-            <a href="tel:+19733841425">
-              <Button size="lg" variant="outline" className="text-lg border-white text-white hover:bg-white/10">
-                Call (973) 384-1425
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+      <CallBlock
+        title="Book your first ride."
+        body="Tell us where and when. We will confirm the details and send a reminder before your pick-up."
+      />
+    </>
   );
 };
 

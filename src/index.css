@@ -2,107 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Kids Choice design tokens. See DESIGN.md for the rules behind them. All colours are HSL channels. */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 260 30% 15%;
+    color-scheme: light;
+
+    --background: 60 11% 99%;
+    --foreground: 210 13% 6%;
 
     --card: 0 0% 100%;
-    --card-foreground: 260 30% 15%;
+    --card-foreground: 210 13% 6%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 260 30% 15%;
+    --popover-foreground: 210 13% 6%;
 
-    --primary: 270 70% 55%;
-    --primary-foreground: 0 0% 100%;
-    --primary-light: 280 65% 65%;
+    /* Primary is ink: the black conversion pill. */
+    --primary: 210 13% 6%;
+    --primary-foreground: 60 11% 99%;
 
-    --secondary: 270 40% 97%;
-    --secondary-foreground: 260 30% 15%;
+    --secondary: 90 6% 94%;
+    --secondary-foreground: 210 13% 6%;
 
-    --muted: 270 30% 95%;
-    --muted-foreground: 260 15% 45%;
+    --muted: 90 6% 94%;
+    --muted-foreground: 144 3% 30%;
 
-    --accent: 180 70% 50%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent is school-bus yellow. Always paired with near-black text. */
+    --accent: 44 100% 55%;
+    --accent-foreground: 210 13% 6%;
+    --bus: 44 100% 55%;
+    --bus-deep: 44 100% 47%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 4 77% 40%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 270 25% 88%;
-    --input: 270 25% 88%;
-    --ring: 270 70% 55%;
+    --border: 90 5% 85%;
+    --input: 135 2% 52%;
+    --ring: 210 13% 6%;
 
-    --radius: 1rem;
-    
-    /* Custom tokens for Kids Choice INC */
-    --hero-gradient: linear-gradient(135deg, hsl(270 70% 55%), hsl(280 65% 65%));
-    --accent-gradient: linear-gradient(135deg, hsl(180 70% 50%), hsl(190 65% 55%));
-    --glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
-    --shadow-soft: 0 4px 24px rgba(128, 70, 190, 0.1);
-    --shadow-medium: 0 12px 40px rgba(128, 70, 190, 0.15);
-    --shadow-large: 0 20px 60px rgba(128, 70, 190, 0.25);
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --placeholder: 144 2% 41%;
+    --pressed: 80 5% 88%;
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 260 30% 8%;
-    --foreground: 270 40% 98%;
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
 
-    --card: 260 30% 10%;
-    --card-foreground: 270 40% 98%;
+      --background: 210 13% 6%;
+      --foreground: 90 7% 95%;
 
-    --popover: 260 30% 10%;
-    --popover-foreground: 270 40% 98%;
+      --card: 204 9% 9%;
+      --card-foreground: 90 7% 95%;
 
-    --primary: 270 70% 60%;
-    --primary-foreground: 0 0% 100%;
-    --primary-light: 280 65% 70%;
+      --popover: 204 9% 11%;
+      --popover-foreground: 90 7% 95%;
 
-    --secondary: 260 25% 15%;
-    --secondary-foreground: 270 40% 98%;
+      --primary: 90 7% 95%;
+      --primary-foreground: 210 13% 6%;
 
-    --muted: 260 25% 13%;
-    --muted-foreground: 260 15% 65%;
+      --secondary: 204 9% 11%;
+      --secondary-foreground: 90 7% 95%;
 
-    --accent: 180 70% 55%;
-    --accent-foreground: 0 0% 100%;
+      --muted: 204 9% 11%;
+      --muted-foreground: 135 3% 73%;
 
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 0 0% 100%;
+      --accent: 44 100% 55%;
+      --accent-foreground: 210 13% 6%;
+      --bus: 44 100% 55%;
+      --bus-deep: 44 100% 62%;
 
-    --border: 260 25% 18%;
-    --input: 260 25% 18%;
-    --ring: 270 70% 60%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+      --destructive: 4 92% 69%;
+      --destructive-foreground: 210 13% 6%;
+
+      --border: 206 7% 19%;
+      --input: 200 5% 42%;
+      --ring: 90 7% 95%;
+
+      --placeholder: 135 3% 62%;
+      --pressed: 206 7% 16%;
+    }
   }
 }
 
@@ -111,30 +100,177 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 6rem;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 8.5rem;
+    }
+  }
+
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "cv11", "ss01";
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: hsl(var(--bus) / 0.35);
+    @apply bg-background font-sans text-[1.0625rem] leading-[1.6] text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-balance font-bold;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: hsl(var(--bus));
+    color: hsl(210 13% 6%);
+  }
+
+  /* One focus treatment for every interactive element. */
+  :focus-visible {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 3px;
+  }
+
+  #main-content:focus {
+    outline: none;
+  }
+
+  ::placeholder {
+    color: hsl(var(--placeholder));
+    opacity: 1;
   }
 }
 
-@layer utilities {
-  .glass {
-    @apply bg-white/80 backdrop-blur-xl border border-white/20;
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-4 md:px-8;
   }
-  
-  .glass-dark {
-    @apply bg-gray-900/80 backdrop-blur-xl border border-white/10;
+
+  .display-xxl {
+    @apply font-display font-extrabold;
+    font-size: clamp(2.5rem, 3.4vw + 1rem, 4.25rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
   }
-  
-  .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-large;
+
+  .display-xl {
+    @apply font-display font-bold;
+    font-size: clamp(2rem, 2vw + 1.1rem, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
   }
-  
-  .hover-glow {
-    @apply transition-all duration-300 hover:shadow-[0_0_30px_rgba(128,70,190,0.4)];
+
+  .display-lg {
+    @apply font-display text-[1.75rem] font-bold leading-[1.15];
+    letter-spacing: -0.01em;
   }
-  
-  .geometric-shape {
-    @apply absolute rounded-full opacity-10 pointer-events-none;
+
+  .display-md {
+    @apply font-display text-[1.375rem] font-bold leading-[1.25];
   }
+
+  .lead {
+    @apply text-[1.1875rem] leading-[1.55] text-muted-foreground;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.8125rem] font-bold uppercase tracking-[0.08em] text-muted-foreground;
+  }
+
+  /* Inline text link: underlined, never colour-only. */
+  .text-link {
+    @apply font-medium underline decoration-1 underline-offset-[0.2em] transition-[text-decoration-color,text-decoration-thickness];
+    text-decoration-color: hsl(var(--foreground) / 0.4);
+  }
+  .text-link:hover {
+    text-decoration-color: hsl(var(--foreground));
+    text-decoration-thickness: 2px;
+  }
+
+  /* Yellow marker behind a word in a headline. */
+  .marker {
+    background-image: linear-gradient(hsl(var(--bus)), hsl(var(--bus)));
+    background-repeat: no-repeat;
+    background-size: 100% 0.32em;
+    background-position: 0 88%;
+    padding-inline: 0.04em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    /* Light text over yellow loses contrast, so the marker becomes an underline bar. */
+    .marker {
+      background-size: 100% 0.14em;
+      background-position: 0 96%;
+    }
+  }
+
+  .photo {
+    @apply overflow-hidden rounded-card bg-muted;
+  }
+  .photo > img {
+    @apply h-full w-full object-cover;
+  }
+}
+
+/* Motion. Everything here is opt-in for people who have not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .rise {
+    animation: rise 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  /* RevealManager adds .reveal-ready to <html> once it is watching, then .is-visible per element.
+     Without JavaScript, or with reduced motion, content is never hidden. */
+  .reveal-ready .reveal {
+    transition:
+      opacity 640ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 640ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-ready .reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .nudge > svg {
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nudge:hover > svg {
+    transform: translateX(3px);
+  }
+}
+
+/* One stroke weight for the whole icon set. */
+svg.lucide {
+  stroke-width: 1.75px;
+}
+
+/* Dark surfaces (footer, ink panels) need a light focus ring in both themes. */
+.on-dark :focus-visible {
+  outline-color: hsl(90 7% 95%);
+}
+/* Yellow surfaces keep the ink ring in both themes. */
+.on-bus :focus-visible {
+  outline-color: hsl(210 13% 6%);
 }
