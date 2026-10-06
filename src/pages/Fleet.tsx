@@ -1,241 +1,211 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { Shield, Wrench, Award, CheckCircle } from "lucide-react";
-import vanInterior from "@/assets/van-interior.jpg";
-import schoolBus from "@/assets/school-bus.jpg";
+import { Link } from "react-router-dom";
+import { ArrowRight, BadgeCheck, ClipboardCheck, Wrench } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import CallBlock from "@/components/CallBlock";
+import CheckList from "@/components/CheckList";
+import PageHero from "@/components/PageHero";
+import { usePageTitle } from "@/hooks/use-page-title";
+import driverAtLift from "@/assets/driver-at-lift.jpg";
+import vanLiftDetail from "@/assets/van-lift-detail.jpg";
+import schoolBusFleet from "@/assets/school-bus-fleet.jpg";
+
+const vehicles = [
+  {
+    title: "Wheelchair-accessible vans",
+    text: "Specialized vans built for safe, comfortable transport of people with mobility needs.",
+    image: { src: vanLiftDetail, alt: "A van with its rear wheelchair lift lowered to the ground" },
+    features: [
+      "Hydraulic wheelchair lifts and ramps",
+      "Secure 4-point wheelchair restraints",
+      "Climate-controlled interiors",
+      "Low-floor entry for easy access",
+      "Seating for attendants and family",
+      "Room for many wheelchair sizes",
+      "Two-way communication systems",
+      "ADA-compliant design and safety features",
+    ],
+  },
+  {
+    title: "School buses",
+    text: "A school bus fleet that meets federal safety standards, inspected and maintained on a regular schedule.",
+    image: { src: schoolBusFleet, alt: "A row of yellow school buses parked side by side" },
+    features: [
+      "Full-size and mid-size bus options",
+      "High-backed padded seats with seat belts",
+      "Reinforced steel construction",
+      "Emergency exits and safety equipment",
+      "Extended visibility mirror systems",
+      "Coordinated route management support",
+      "Stop-arm and crossing-gate systems",
+      "Regular DOT inspections and compliance",
+    ],
+  },
+];
+
+const protocols = [
+  {
+    icon: Wrench,
+    title: "Regular maintenance",
+    text: "Scheduled preventive maintenance: oil changes, brake inspections, tire rotations and full system checks, with a service record for every vehicle.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Daily inspections",
+    text: "Before every route, drivers complete a pre-trip checklist covering lights, brakes, tires, safety equipment, wheelchair lifts and mechanical systems.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "DOT compliance",
+    text: "Every vehicle meets Department of Transportation standards and passes regular state inspections under federal and state regulations.",
+  },
+];
+
+const featureGroups = [
+  {
+    title: "Safety equipment",
+    items: [
+      "Fire extinguishers on every vehicle",
+      "First aid kits and emergency supplies",
+      "Two-way radio communication",
+      "Reflective safety triangles",
+      "Emergency evacuation plans",
+    ],
+  },
+  {
+    title: "Technology",
+    items: [
+      "Digital route planning tools",
+      "High-visibility interior lighting",
+      "Electronic logging devices (ELD)",
+      "Backup alarms and proximity alerts",
+      "Digital dispatch systems",
+    ],
+  },
+  {
+    title: "Driver safety",
+    items: [
+      "CDL licensed and certified drivers",
+      "Background checks and drug screening",
+      "Defensive driving training",
+      "First aid and CPR certification",
+      "Ongoing safety education",
+    ],
+  },
+  {
+    title: "Accessibility",
+    items: ["ADA-compliant wheelchair access", "Secure restraint systems", "Handrails and grab bars", "Non-slip flooring", "Height-adjustable features"],
+  },
+];
+
+const certifications = [
+  { title: "DOT certified", text: "Meets Department of Transportation safety standards." },
+  { title: "ADA compliant", text: "Follows Americans with Disabilities Act standards." },
+  { title: "Licensed & insured", text: "Licensed commercial carrier with full insurance." },
+  { title: "State inspected", text: "Regular state inspections with documented records." },
+];
 
 const Fleet = () => {
+  usePageTitle("Fleet & Safety");
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <Shield className="w-16 h-16 text-primary mx-auto mb-6" />
-          <h1 className="text-5xl font-bold text-foreground mb-6 animate-fade-in">
-            Our Fleet & Safety Standards
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up">
-            Modern, well-maintained vehicles and industry-leading safety protocols that ensure every journey is safe, 
-            comfortable, and reliable.
-          </p>
-        </div>
-      </section>
-
-      {/* Fleet Overview */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-foreground text-center mb-12">Our Vehicle Fleet</h2>
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Wheelchair-Accessible Vans */}
-            <div className="bg-card border border-border rounded-xl overflow-hidden shadow-medium">
-              <img
-                src={vanInterior}
-                alt="Wheelchair-accessible van interior"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-4">Wheelchair-Accessible Vans</h3>
-                <p className="text-muted-foreground mb-6">
-                  Our fleet of specialized wheelchair-accessible vans is equipped with state-of-the-art features 
-                  for safe, comfortable transport of individuals with mobility needs.
-                </p>
-                <h4 className="font-semibold text-foreground mb-3">Features Include:</h4>
-                <ul className="space-y-2">
-                  {[
-                    "Hydraulic wheelchair lifts and ramps",
-                    "Secure 4-point wheelchair restraint systems",
-                    "Climate-controlled interiors",
-                    "Low-floor entry for easy access",
-                    "Comfortable seating for attendants/family",
-                    "Spacious interior accommodating various wheelchair sizes",
-                    "Two-way communication systems",
-                    "ADA-compliant design and safety features",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-muted-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* School Buses */}
-            <div className="bg-card border border-border rounded-xl overflow-hidden shadow-medium">
-              <img
-                src={schoolBus}
-                alt="Modern school bus"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-4">School Buses</h3>
-                <p className="text-muted-foreground mb-6">
-                  Our modern school bus fleet meets and exceeds all federal safety standards. Each bus is regularly 
-                  inspected, maintained, and equipped with the latest safety technology.
-                </p>
-                <h4 className="font-semibold text-foreground mb-3">Features Include:</h4>
-                <ul className="space-y-2">
-                  {[
-                    "Full-size and mid-size bus options",
-                    "High-backed padded seats with seat belts",
-                    "Reinforced steel construction",
-                    "Emergency exits and safety equipment",
-                    "Extended visibility mirror systems",
-                    "Coordinated route management support",
-                    "Stop-arm and crossing-gate safety systems",
-                    "Regular DOT inspections and compliance",
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-muted-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Maintenance & Safety */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-foreground text-center mb-12">
-            Maintenance & Safety Protocols
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-hero-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                <Wrench className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-foreground mb-4">Regular Maintenance</h3>
-              <p className="text-muted-foreground">
-                Every vehicle undergoes scheduled preventive maintenance including oil changes, brake inspections, 
-                tire rotations, and comprehensive system checks. We maintain detailed service records for every vehicle.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-hero-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-foreground mb-4">Daily Inspections</h3>
-              <p className="text-muted-foreground">
-                Before every route, our drivers complete a thorough pre-trip inspection checklist covering lights, 
-                brakes, tires, safety equipment, wheelchair lifts, and all mechanical systems.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-hero-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                <Award className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-foreground mb-4">DOT Compliance</h3>
-              <p className="text-muted-foreground">
-                All vehicles meet Department of Transportation standards and undergo regular state inspections. 
-                We maintain full compliance with all federal and state transportation regulations.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Safety Features */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-foreground text-center mb-12">
-            Vehicle Safety Features
-          </h2>
-          <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-4">Safety Equipment</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Fire extinguishers on every vehicle</li>
-                  <li>• First aid kits and emergency supplies</li>
-                  <li>• Two-way radio communication</li>
-                  <li>• Reflective safety triangles</li>
-                  <li>• Emergency evacuation plans</li>
-                </ul>
-              </div>
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-4">Technology Features</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Digital route planning tools</li>
-                  <li>• High-visibility interior lighting</li>
-                  <li>• Electronic logging devices (ELD)</li>
-                  <li>• Audible backup alarms and proximity alerts</li>
-                  <li>• Digital dispatch systems</li>
-                </ul>
-              </div>
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-4">Driver Safety</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• CDL licensed and certified drivers</li>
-                  <li>• Background checks and drug screening</li>
-                  <li>• Defensive driving training</li>
-                  <li>• First aid and CPR certification</li>
-                  <li>• Ongoing safety education</li>
-                </ul>
-              </div>
-              <div className="bg-card border border-border rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-4">Accessibility Features</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• ADA-compliant wheelchair access</li>
-                  <li>• Secure restraint systems</li>
-                  <li>• Handrails and grab bars</li>
-                  <li>• Non-slip flooring</li>
-                  <li>• Height-adjustable features</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <>
+      <PageHero
+        eyebrow="Fleet & safety"
+        title="Checked before every route."
+        lead="Well-maintained vehicles and strict safety protocols, so every trip is safe, comfortable and on schedule."
+        image={{
+          src: driverAtLift,
+          alt: "A driver checking the wheelchair lift of a white passenger van before a trip",
+          position: "40% 50%",
+        }}
+        actions={
+          <Button asChild size="lg" className="nudge">
+            <Link to="/contact">
+              Request a quote
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </Button>
+        }
+      />
 
       {/* Certifications */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-foreground text-center mb-12">
-            Certifications & Compliance
+      <section aria-label="Certifications" className="border-y bg-secondary">
+        <ul className="container-site grid gap-6 py-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {certifications.map(item => (
+            <li key={item.title} className="flex gap-3">
+              <BadgeCheck className="mt-0.5 h-6 w-6 shrink-0" aria-hidden="true" />
+              <div>
+                <p className="font-bold">{item.title}</p>
+                <p className="text-[0.9375rem] text-muted-foreground">{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Vehicles */}
+      <section className="container-site py-20 md:py-28" aria-labelledby="fleet-heading">
+        <h2 id="fleet-heading" className="display-xl">
+          Our vehicles
+        </h2>
+        <div className="mt-12 grid gap-14 lg:grid-cols-2 lg:gap-10">
+          {vehicles.map(vehicle => (
+            <article key={vehicle.title} className="reveal">
+              <div className="photo aspect-[16/10]">
+                <img src={vehicle.image.src} alt={vehicle.image.alt} loading="lazy" width={1024} height={640} />
+              </div>
+              <h3 className="display-lg mt-7">{vehicle.title}</h3>
+              <p className="mt-3 text-muted-foreground">{vehicle.text}</p>
+              <CheckList items={vehicle.features} className="mt-6 text-[0.9375rem] sm:grid-cols-2" />
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Protocols */}
+      <section className="container-site pb-20 md:pb-28" aria-labelledby="protocols-heading">
+        <div className="rounded-card bg-secondary px-6 py-12 sm:px-10 md:py-16 lg:px-14">
+          <h2 id="protocols-heading" className="display-xl max-w-2xl">
+            Maintenance and safety protocols
           </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-card border border-border rounded-lg p-8 text-center">
-                <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-foreground mb-3">DOT Certified</h3>
-                <p className="text-muted-foreground">
-                  All vehicles meet Department of Transportation safety standards with regular inspections and compliance.
-                </p>
+          <ul className="mt-12 grid gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-border">
+            {protocols.map(({ icon: Icon, title, text }, index) => (
+              <li key={title} className={`reveal ${index === 0 ? "md:pr-8" : index === 1 ? "md:px-8" : "md:pl-8"}`}>
+                <span className="grid h-14 w-14 place-items-center rounded-full bg-bus text-asphalt" aria-hidden="true">
+                  <Icon className="h-7 w-7" />
+                </span>
+                <h3 className="display-md mt-6">{title}</h3>
+                <p className="mt-3 text-muted-foreground">{text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Feature groups */}
+      <section className="border-t">
+        <div className="container-site py-20 md:py-28">
+          <h2 className="display-xl">On board every vehicle</h2>
+          <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            {featureGroups.map(group => (
+              <div key={group.title} className="reveal">
+                <h3 className="border-b-4 border-bus pb-3 text-lg font-bold">{group.title}</h3>
+                <ul className="mt-4 grid gap-2.5 text-muted-foreground">
+                  {group.items.map(item => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </div>
-              <div className="bg-card border border-border rounded-lg p-8 text-center">
-                <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-foreground mb-3">ADA Compliant</h3>
-                <p className="text-muted-foreground">
-                  Full compliance with Americans with Disabilities Act standards for accessible transportation.
-                </p>
-              </div>
-              <div className="bg-card border border-border rounded-lg p-8 text-center">
-                <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-foreground mb-3">Licensed & Insured</h3>
-                <p className="text-muted-foreground">
-                  Fully licensed commercial transportation service with comprehensive insurance coverage.
-                </p>
-              </div>
-              <div className="bg-card border border-border rounded-lg p-8 text-center">
-                <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-foreground mb-3">State Inspections</h3>
-                <p className="text-muted-foreground">
-                  Regular state safety inspections with documented maintenance records for every vehicle.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <Footer />
-    </div>
+      <CallBlock
+        title="Questions about a vehicle?"
+        body="Call us to talk through accessibility needs, seating or safety equipment before you book."
+      />
+    </>
   );
 };
 

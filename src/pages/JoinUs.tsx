@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { AlertCircle, CheckCircle2, FileCheck2, Pencil } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
 
 const ACCEPTED_FILE_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 const MAX_FILE_SIZE_MB = 5;
@@ -100,7 +100,36 @@ const formSchema = z
 
 type FormData = z.infer<typeof formSchema>;
 
+const checklist = [
+  "A photo or scan of your driver’s license",
+  "Your abstract driver’s record",
+  "Details of any prior driving jobs",
+];
+
+const qualificationQuestions = [
+  { name: "criminalHistory", label: "Criminal history with fingerprint?" },
+  { name: "commercialLicense", label: "Commercial Driver’s License (CDL)?" },
+  { name: "passengerEndorsement", label: "Passenger & Student Endorsement?" },
+  { name: "drugTestCompleted", label: "Drug test completed?" },
+] as const;
+
+const RequiredTag = () => (
+  <span className="ml-1.5 rounded-full bg-secondary px-2 py-0.5 align-middle text-xs font-bold text-muted-foreground">Required</span>
+);
+
+/** A labelled yes/no radio rendered as a pill. The whole pill is the click target. */
+const YesNoOption = ({ name, value }: { name: string; value: "yes" | "no" }) => (
+  <Label
+    htmlFor={`${name}-${value}`}
+    className="flex h-11 min-w-[5.5rem] cursor-pointer items-center gap-2.5 rounded-full border border-input px-4 font-normal transition-colors hover:border-foreground has-[[data-state=checked]]:border-foreground has-[[data-state=checked]]:bg-secondary has-[[data-state=checked]]:font-bold"
+  >
+    <RadioGroupItem id={`${name}-${value}`} value={value} />
+    {value === "yes" ? "Yes" : "No"}
+  </Label>
+);
+
 const JoinUs = () => {
+  usePageTitle("Join Our Team");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [experienceModalOpen, setExperienceModalOpen] = useState(false);
   const [submissionFeedback, setSubmissionFeedback] = useState<"idle" | "success" | "error">("idle");
@@ -202,269 +231,210 @@ const JoinUs = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold text-foreground mb-6 animate-fade-in">Join Our Driver Team</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up">
-            We're always looking for compassionate, safety-first professionals. Share a few details below and we'll reach out if your
-            experience is a good fit for our team.
+    <>
+      <section className="container-site grid gap-10 pb-14 pt-10 md:pb-20 md:pt-14 lg:grid-cols-12 lg:items-end lg:gap-14">
+        <div className="lg:col-span-7">
+          <p className="eyebrow rise" style={{ "--i": 0 } as CSSProperties}>
+            Careers
           </p>
+          <h1 className="display-xxl rise mt-4" style={{ "--i": 1 } as CSSProperties}>
+            Drive with Kids Choice.
+          </h1>
+          <p className="lead rise mt-6 max-w-[34rem]" style={{ "--i": 2 } as CSSProperties}>
+            We are always looking for patient, safety-first drivers. Share a few details and our hiring team will reach out.
+          </p>
+        </div>
+        <div className="on-bus rise rounded-card bg-bus p-7 text-asphalt sm:p-9 lg:col-span-5" style={{ "--i": 2 } as CSSProperties}>
+          <h2 className="display-md">Have these ready</h2>
+          <ul className="mt-5 grid gap-3">
+            {checklist.map(item => (
+              <li key={item} className="flex items-start gap-3">
+                <FileCheck2 className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="bg-card border border-border rounded-2xl shadow-medium p-8 md:p-12 space-y-8">
-            <div className="space-y-3">
-              <h2 className="text-3xl font-bold text-foreground">Driver Application</h2>
-              <p className="text-muted-foreground">
-                Complete the form and include your driver's license photo and abstract record. We'll route your information directly to our
-                hiring team.
-              </p>
-            </div>
+      <section className="container-site pb-20 md:pb-28">
+        <div className="mx-auto max-w-4xl rounded-card border bg-card p-6 sm:p-10 lg:p-12">
+          <h2 className="display-lg">Driver application</h2>
+          <p className="mt-2 text-muted-foreground">
+            Fields marked <span className="font-bold text-foreground">Required</span> must be filled in. Everything goes straight to
+            our hiring team.
+          </p>
 
+          <div className="mt-6 empty:hidden">
             {submissionFeedback === "success" && (
-              <Alert className="bg-primary/10 border-primary/30 text-primary">
-                <AlertDescription>Thanks! We'll review your application and contact you soon.</AlertDescription>
+              <Alert className="border-foreground">
+                <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+                <AlertDescription>Thanks! We&rsquo;ll review your application and contact you soon.</AlertDescription>
               </Alert>
             )}
 
             {submissionFeedback === "error" && (
               <Alert variant="destructive">
+                <AlertCircle className="h-5 w-5" aria-hidden="true" />
                 <AlertDescription>
                   We were unable to submit your application. Please review the highlighted fields or try again in a moment.
                 </AlertDescription>
               </Alert>
             )}
+          </div>
 
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" noValidate encType="multipart/form-data">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Full Name *</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Jane Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8" noValidate encType="multipart/form-data">
+              <fieldset className="grid gap-6 md:grid-cols-2">
+                <legend className="display-md mb-6">About you</legend>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        Full name <RequiredTag />
+                      </FormLabel>
+                      <FormControl>
+                        <Input autoComplete="name" aria-required="true" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Phone Number *</FormLabel>
-                        <FormControl>
-                          <Input type="tel" placeholder="(555) 123-4567" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        Phone number <RequiredTag />
+                      </FormLabel>
+                      <FormControl>
+                        <Input type="tel" inputMode="tel" autoComplete="tel" aria-required="true" placeholder="(973) 555-0142" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </fieldset>
+
+              <div className="mt-12 border-t pt-10">
+              <fieldset>
+                <legend className="display-md mb-2">Qualifications</legend>
+                <div className="grid divide-y">
+                  {qualificationQuestions.map(question => (
+                    <FormField
+                      key={question.name}
+                      control={form.control}
+                      name={question.name}
+                      render={({ field }) => (
+                        <FormItem className="grid gap-3 space-y-0 py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-6">
+                          <FormLabel id={`${question.name}-label`} className="text-base font-normal">
+                            {question.label}
+                          </FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              value={field.value ?? ""}
+                              onValueChange={value => field.onChange(value || undefined)}
+                              aria-labelledby={`${question.name}-label`}
+                              className="flex gap-2"
+                            >
+                              <YesNoOption name={question.name} value="yes" />
+                              <YesNoOption name={question.name} value="no" />
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage className="sm:col-span-2" />
+                        </FormItem>
+                      )}
+                    />
+                  ))}
                 </div>
+              </fieldset>
+              </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="criminalHistory"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Criminal history with fingerprint?</FormLabel>
-                        <FormControl>
-                          <RadioGroup
-                            value={field.value ?? ""}
-                            onValueChange={value => field.onChange(value || undefined)}
-                            className="flex flex-wrap gap-6"
-                          >
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="yes" />
-                              </FormControl>
-                              <Label className="font-normal">Yes</Label>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="no" />
-                              </FormControl>
-                              <Label className="font-normal">No</Label>
-                            </FormItem>
-                          </RadioGroup>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+              <div className="mt-12 border-t pt-10">
+              <fieldset className="grid gap-6 md:grid-cols-2">
+                <legend className="display-md mb-6">Documents</legend>
+                <FormField
+                  control={form.control}
+                  name="driverLicenseFile"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        Driver&rsquo;s license photo <RequiredTag />
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="file"
+                          accept=".jpg,.jpeg,.png,.pdf"
+                          className="h-auto py-2 pl-2"
+                          onChange={event => field.onChange(event.target.files)}
+                          onBlur={field.onBlur}
+                        />
+                      </FormControl>
+                      <FormDescription>JPG, PNG or PDF, up to {MAX_FILE_SIZE_MB}MB.</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                  <FormField
-                    control={form.control}
-                    name="commercialLicense"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Commercial Driver's License (CDL)?</FormLabel>
-                        <FormControl>
-                          <RadioGroup
-                            value={field.value ?? ""}
-                            onValueChange={value => field.onChange(value || undefined)}
-                            className="flex flex-wrap gap-6"
-                          >
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="yes" />
-                              </FormControl>
-                              <Label className="font-normal">Yes</Label>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="no" />
-                              </FormControl>
-                              <Label className="font-normal">No</Label>
-                            </FormItem>
-                          </RadioGroup>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                <FormField
+                  control={form.control}
+                  name="abstractRecordFile"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        Abstract driver&rsquo;s record <RequiredTag />
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="file"
+                          accept=".jpg,.jpeg,.png,.pdf"
+                          className="h-auto py-2 pl-2"
+                          onChange={event => field.onChange(event.target.files)}
+                          onBlur={field.onBlur}
+                        />
+                      </FormControl>
+                      <FormDescription>JPG, PNG or PDF, up to {MAX_FILE_SIZE_MB}MB.</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </fieldset>
+              </div>
 
-                  <FormField
-                    control={form.control}
-                    name="passengerEndorsement"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Passenger &amp; Student Endorsement?</FormLabel>
-                        <FormControl>
-                          <RadioGroup
-                            value={field.value ?? ""}
-                            onValueChange={value => field.onChange(value || undefined)}
-                            className="flex flex-wrap gap-6"
-                          >
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="yes" />
-                              </FormControl>
-                              <Label className="font-normal">Yes</Label>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="no" />
-                              </FormControl>
-                              <Label className="font-normal">No</Label>
-                            </FormItem>
-                          </RadioGroup>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="drugTestCompleted"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Drug test completed?</FormLabel>
-                        <FormControl>
-                          <RadioGroup
-                            value={field.value ?? ""}
-                            onValueChange={value => field.onChange(value || undefined)}
-                            className="flex flex-wrap gap-6"
-                          >
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="yes" />
-                              </FormControl>
-                              <Label className="font-normal">Yes</Label>
-                            </FormItem>
-                            <FormItem className="flex items-center space-x-2 space-y-0">
-                              <FormControl>
-                                <RadioGroupItem value="no" />
-                              </FormControl>
-                              <Label className="font-normal">No</Label>
-                            </FormItem>
-                          </RadioGroup>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="driverLicenseFile"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Driver's License Photo *</FormLabel>
-                        <FormControl>
-                          <Input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={event => field.onChange(event.target.files)} onBlur={field.onBlur} />
-                        </FormControl>
-                        <FormDescription>Accepted formats: JPG, PNG, PDF (max {MAX_FILE_SIZE_MB}MB).</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="abstractRecordFile"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Abstract Driver's Record *</FormLabel>
-                        <FormControl>
-                          <Input type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={event => field.onChange(event.target.files)} onBlur={field.onBlur} />
-                        </FormControl>
-                        <FormDescription>Accepted formats: JPG, PNG, PDF (max {MAX_FILE_SIZE_MB}MB).</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
+              <div className="mt-12 border-t pt-10">
+              <fieldset className="grid gap-8">
+                <legend className="display-md mb-6">Experience and notes</legend>
                 <FormField
                   control={form.control}
                   name="priorExperience"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Any prior driving experience?</FormLabel>
+                      <FormLabel id="priorExperience-label">Any prior driving experience?</FormLabel>
                       <FormControl>
                         <RadioGroup
                           value={field.value}
                           onValueChange={value => field.onChange(value as "yes" | "no")}
-                          className="flex gap-6"
+                          aria-labelledby="priorExperience-label"
+                          className="flex gap-2"
                         >
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="yes" />
-                            </FormControl>
-                            <Label className="font-normal">Yes</Label>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="no" />
-                            </FormControl>
-                            <Label className="font-normal">No</Label>
-                          </FormItem>
+                          <YesNoOption name="priorExperience" value="yes" />
+                          <YesNoOption name="priorExperience" value="no" />
                         </RadioGroup>
                       </FormControl>
                       <FormDescription>
                         {field.value === "yes"
-                          ? "We opened a modal so you can add your most recent experience. You can reopen it below at any time."
-                          : "Select yes if you have professional driving experience you would like to share."}
+                          ? "A window opened so you can add your most recent experience. You can reopen it below at any time."
+                          : "Choose yes if you have professional driving experience you would like to share."}
                       </FormDescription>
                       <FormMessage />
                       {field.value === "yes" && (
-                        <Button type="button" variant="outline" size="sm" className="mt-2 w-fit" onClick={() => setExperienceModalOpen(true)}>
-                          Update experience details
+                        <Button type="button" variant="secondary" size="sm" className="mt-2 w-fit" onClick={() => setExperienceModalOpen(true)}>
+                          <Pencil aria-hidden="true" />
+                          Edit experience details
                         </Button>
                       )}
                     </FormItem>
@@ -472,19 +442,20 @@ const JoinUs = () => {
                 />
 
                 <Dialog open={experienceModalOpen} onOpenChange={setExperienceModalOpen}>
-                  <DialogContent className="sm:max-w-[500px]">
+                  <DialogContent className="sm:max-w-[520px]">
                     <DialogHeader>
-                      <DialogTitle>Prior Driving Experience</DialogTitle>
+                      <DialogTitle>Prior driving experience</DialogTitle>
+                      <DialogDescription>Tell us about your most recent driving job.</DialogDescription>
                     </DialogHeader>
-                    <div className="space-y-4">
+                    <div className="grid gap-5">
                       <FormField
                         control={form.control}
                         name="experienceCompany"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Company Name</FormLabel>
+                            <FormLabel>Company name</FormLabel>
                             <FormControl>
-                              <Input placeholder="ABC Transportation" {...field} />
+                              <Input autoComplete="organization" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -495,9 +466,9 @@ const JoinUs = () => {
                         name="experienceDuration"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Duration</FormLabel>
+                            <FormLabel>How long did you work there?</FormLabel>
                             <FormControl>
-                              <Input placeholder="e.g., 2 years" {...field} />
+                              <Input placeholder="e.g. 2 years" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -505,7 +476,7 @@ const JoinUs = () => {
                       />
                     </div>
                     <DialogFooter>
-                      <Button type="button" variant="secondary" onClick={() => setExperienceModalOpen(false)}>
+                      <Button type="button" onClick={() => setExperienceModalOpen(false)}>
                         Done
                       </Button>
                     </DialogFooter>
@@ -517,32 +488,33 @@ const JoinUs = () => {
                   name="extraNotes"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Additional Notes</FormLabel>
+                      <FormLabel>Additional notes</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Share any scheduling preferences, certifications, or other details you'd like us to know." rows={4} {...field} />
+                        <Textarea
+                          placeholder="Scheduling preferences, certifications, or anything else we should know…"
+                          rows={4}
+                          {...field}
+                        />
                       </FormControl>
-                      <FormDescription>Optional. Provide any extra context that will help us review your application.</FormDescription>
+                      <FormDescription>Optional. Up to 1,000 characters.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+              </fieldset>
+              </div>
 
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <p className="text-sm text-muted-foreground">
-                    Required fields marked with *. Files must be JPG, PNG, or PDF and stay within size limits.
-                  </p>
-                  <Button type="submit" size="lg" className="bg-hero-gradient hover:opacity-90" disabled={isSubmitting}>
-                    {isSubmitting ? "Submitting..." : "Submit Application"}
-                  </Button>
-                </div>
-              </form>
-            </Form>
-          </div>
+              <div className="mt-10 flex flex-col gap-4 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-[0.9375rem] text-muted-foreground">Files must be JPG, PNG or PDF and under {MAX_FILE_SIZE_MB}MB each.</p>
+                <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={isSubmitting}>
+                  {isSubmitting ? "Submitting…" : "Submit application"}
+                </Button>
+              </div>
+            </form>
+          </Form>
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </>
   );
 };
 

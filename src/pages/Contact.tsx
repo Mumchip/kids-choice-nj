@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { usePageTitle } from "@/hooks/use-page-title";
+import { EMAIL, PHONE_DISPLAY, PHONE_HREF } from "@/lib/site";
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().email("Invalid email address").max(255),
@@ -19,7 +19,24 @@ const formSchema = z.object({
   message: z.string().min(10, "Message must be at least 10 characters").max(1000)
 });
 type FormData = z.infer<typeof formSchema>;
+const contactDetails = [{
+  icon: Mail,
+  term: "Email",
+  detail: <a href={`mailto:${EMAIL}`} className="text-link break-all">{EMAIL}</a>,
+  note: "We respond within 24 hours"
+}, {
+  icon: Clock,
+  term: "Hours",
+  detail: "Monday to Sunday, 7:00 AM to 6:00 PM",
+  note: "Emergency service available 24/7"
+}, {
+  icon: MapPin,
+  term: "Service area",
+  detail: "Northern and Central New Jersey",
+  note: "Serving many counties and communities"
+}];
 const Contact = () => {
+  usePageTitle("Contact");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     toast
@@ -72,204 +89,157 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
-  return <div className="min-h-screen flex flex-col">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold text-foreground mb-6 animate-fade-in">
-            Get in Touch
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up">
-            Have questions or ready to schedule transportation services? We're here to help. 
-            Reach out to us today and let's discuss your transportation needs.
-          </p>
-        </div>
+  return (
+    <>
+      <section className="container-site pb-12 pt-10 md:pb-16 md:pt-14">
+        <p className="eyebrow rise" style={{ "--i": 0 } as CSSProperties}>
+          Contact
+        </p>
+        <h1 className="display-xxl rise mt-4 max-w-4xl" style={{ "--i": 1 } as CSSProperties}>
+          Ask a question or request a quote.
+        </h1>
+        <p className="lead rise mt-6 max-w-[38rem]" style={{ "--i": 2 } as CSSProperties}>
+          Tell us about the trip, the route or the rider. We reply within 24 hours, or call us for anything urgent.
+        </p>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Send Us a Message</h2>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField control={form.control} name="name" render={({
-                  field
-                }) => <FormItem>
-                        <FormLabel>Full Name *</FormLabel>
-                        <FormControl>
-                          <Input placeholder="John Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>} />
-                  <FormField control={form.control} name="email" render={({
-                  field
-                }) => <FormItem>
-                        <FormLabel>Email Address *</FormLabel>
-                        <FormControl>
-                          <Input type="email" placeholder="john@example.com" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>} />
-                  <FormField control={form.control} name="phone" render={({
-                  field
-                }) => <FormItem>
-                        <FormLabel>Phone Number *</FormLabel>
-                        <FormControl>
-                          <Input type="tel" placeholder="1234567890" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>} />
-                  <FormField control={form.control} name="serviceType" render={({
-                  field
-                }) => <FormItem>
-                        <FormLabel>Service Type *</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a service" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="wheelchair">Wheelchair & Mobility Services</SelectItem>
-                            <SelectItem value="school">School Transportation</SelectItem>
-                            <SelectItem value="private">Private Transportation</SelectItem>
-                            <SelectItem value="quote">Request a Quote</SelectItem>
-                            <SelectItem value="employment">Looking for Employment</SelectItem>
-                            <SelectItem value="other">Other / General Inquiry</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>} />
-                  <FormField control={form.control} name="message" render={({
-                  field
-                }) => <FormItem>
-                        <FormLabel>Message *</FormLabel>
-                        <FormControl>
-                          <Textarea placeholder="Tell us about your transportation needs..." className="min-h-[150px]" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>} />
-                  <Button type="submit" size="lg" className="w-full bg-hero-gradient hover:opacity-90" disabled={isSubmitting}>
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
-              </Form>
-            </div>
-
-            {/* Contact Information */}
-            <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Contact Information</h2>
-              <div className="space-y-6 mb-8">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-hero-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                    <a href="tel:+19733841425" className="text-primary hover:text-primary-light text-lg">(973) 384-1425</a>
-                    <p className="text-sm text-muted-foreground mt-1">Available Monday - Sunday, 7:00 AM - 6:00 PM</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-hero-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                    <a href="mailto:info@kidschoicenj.com" className="text-primary hover:text-primary-light text-lg">info@kidschoicenj.com</a>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      We respond within 24 hours
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-hero-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Service Area</h3>
-                    <p className="text-foreground text-lg">Northern/Central New Jersey</p>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Serving multiple counties and communities
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-hero-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Business Hours</h3>
-                    <div className="space-y-1 text-foreground">
-                      <p>Monday - Sunday: 7:00 AM - 6:00 PM</p>
-                      
-                      
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      Emergency service available 24/7
-                    </p>
-                  </div>
-                </div>
+      <section className="container-site grid gap-8 pb-20 md:pb-28 lg:grid-cols-12 lg:gap-10">
+        {/* Form */}
+        <div className="rounded-card border bg-card p-6 sm:p-10 lg:col-span-7">
+          <h2 className="display-lg">Send us a message</h2>
+          <p className="mt-2 text-[0.9375rem] text-muted-foreground">All fields are required.</p>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="mt-8 grid gap-6 sm:grid-cols-2" noValidate>
+              <FormField control={form.control} name="name" render={({
+              field
+            }) => <FormItem className="sm:col-span-2">
+                    <FormLabel>Full name</FormLabel>
+                    <FormControl>
+                      <Input autoComplete="name" aria-required="true" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>} />
+              <FormField control={form.control} name="email" render={({
+              field
+            }) => <FormItem>
+                    <FormLabel>Email address</FormLabel>
+                    <FormControl>
+                      <Input type="email" autoComplete="email" spellCheck={false} aria-required="true" placeholder="name@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>} />
+              <FormField control={form.control} name="phone" render={({
+              field
+            }) => <FormItem>
+                    <FormLabel>Phone number</FormLabel>
+                    <FormControl>
+                      <Input type="tel" inputMode="tel" autoComplete="tel" aria-required="true" placeholder="(973) 555-0142" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>} />
+              <FormField control={form.control} name="serviceType" render={({
+              field
+            }) => <FormItem className="sm:col-span-2">
+                    <FormLabel>What do you need?</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger aria-required="true">
+                          <SelectValue placeholder="Select a service" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="wheelchair">Wheelchair & Mobility Services</SelectItem>
+                        <SelectItem value="school">School Transportation</SelectItem>
+                        <SelectItem value="private">Private Transportation</SelectItem>
+                        <SelectItem value="quote">Request a Quote</SelectItem>
+                        <SelectItem value="employment">Looking for Employment</SelectItem>
+                        <SelectItem value="other">Other / General Inquiry</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>} />
+              <FormField control={form.control} name="message" render={({
+              field
+            }) => <FormItem className="sm:col-span-2">
+                    <FormLabel>Message</FormLabel>
+                    <FormControl>
+                      <Textarea aria-required="true" placeholder="Pick-up and drop-off areas, days and times, and any mobility equipment…" className="min-h-[10rem]" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>} />
+              <div className="sm:col-span-2">
+                <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending…" : "Send message"}
+                  {!isSubmitting && <Send aria-hidden="true" />}
+                </Button>
               </div>
+            </form>
+          </Form>
+        </div>
 
-              {/* Quick Contact Box */}
-              <div className="bg-accent-gradient text-foreground rounded-xl p-8 shadow-medium">
-                <h3 className="text-2xl font-bold mb-4">Need Immediate Assistance?</h3>
-                <p className="mb-6">For urgent transportation needs or emergency scheduling, please call us directly. Our team is ready to help.</p>
-                <a href="tel:+19733841425">
-                  <Button size="lg" variant="secondary" className="w-full">
-                    Call Now: (973) 384-1425
-                  </Button>
-                </a>
-              </div>
-            </div>
+        {/* Details */}
+        <aside className="grid content-start gap-5 lg:col-span-5" aria-label="Contact details">
+          <div className="on-bus rounded-card bg-bus p-7 text-asphalt sm:p-9">
+            <h2 className="display-md">Need a ride soon?</h2>
+            <p className="mt-2 text-asphalt/85">For urgent trips or same-day scheduling, call us directly.</p>
+            <a
+              href={PHONE_HREF}
+              className="mt-6 inline-flex items-center gap-3 whitespace-nowrap rounded-lg font-display text-[2rem] font-extrabold tracking-tight underline decoration-2 underline-offset-[6px] hover:decoration-4 sm:text-[2.25rem]"
+            >
+              <Phone className="h-7 w-7" aria-hidden="true" />
+              {PHONE_DISPLAY}
+            </a>
           </div>
-        </div>
+          <dl className="grid gap-px overflow-hidden rounded-card border bg-border">
+            {contactDetails.map(({
+            icon: Icon,
+            term,
+            detail,
+            note
+          }) => <div key={term} className="flex gap-4 bg-card p-6">
+                <Icon className="mt-0.5 h-6 w-6 shrink-0" aria-hidden="true" />
+                <div>
+                  <dt className="text-[0.9375rem] font-bold text-muted-foreground">{term}</dt>
+                  <dd className="mt-1 text-lg font-bold">{detail}</dd>
+                  <dd className="mt-1 text-[0.9375rem] text-muted-foreground">{note}</dd>
+                </div>
+              </div>)}
+          </dl>
+        </aside>
       </section>
 
-      {/* Service Area Map */}
-      <section className="py-20 bg-secondary">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-foreground mb-6">My Service Area</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Kids Choice INC. proudly serves Northern and Central New Jersey. Contact us to confirm availability in your specific location.
+      {/* Map */}
+      <section className="border-t bg-secondary/60 py-20 md:py-28" aria-labelledby="area-heading">
+        <div className="container-site">
+          <h2 id="area-heading" className="display-xl">Our service area</h2>
+          <p className="lead mt-5 max-w-2xl">
+            We serve Northern and Central New Jersey. Contact us to confirm we cover your address.
           </p>
-          <div className="max-w-5xl mx-auto">
+          <div className="photo reveal mt-10 border">
             <iframe
-              className="w-full h-[320px] md:h-[450px] rounded-3xl border-0 shadow-medium"
+              className="block h-[320px] w-full border-0 md:h-[460px]"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d721954.8326716657!2d-75.06375078484903!3d41.602919125025004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c0fb959e00409f%3A0x2cd27b07f83f6d8d!2sNew%20Jersey!5e0!3m2!1sen!2sus!4v1760390920191!5m2!1sen!2sus"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="New Jersey service area map"
+              title="Map of New Jersey showing the Kids Choice service area"
             />
           </div>
         </div>
       </section>
 
-      {/* ADA Statement */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
-          <div className="bg-card border border-border rounded-lg p-8 text-center max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              ADA Accessibility Statement
-            </h3>
-            <p className="text-muted-foreground">
-              Kids Choice INC. is committed to ensuring accessibility for individuals with disabilities. 
-              Our vehicles, services, and facilities comply with the Americans with Disabilities Act (ADA). 
-              If you require special accommodations or have accessibility concerns, please contact us so we can 
-              better serve your needs.
-            </p>
-          </div>
+      {/* ADA statement */}
+      <section className="container-site py-16 md:py-20" aria-labelledby="ada-heading">
+        <div className="grid gap-4 border-l-4 border-bus pl-6 md:grid-cols-12 md:gap-10">
+          <h2 id="ada-heading" className="display-md md:col-span-4">ADA accessibility statement</h2>
+          <p className="text-muted-foreground md:col-span-8">
+            Kids Choice INC. is committed to accessibility for people with disabilities. Our vehicles, services and facilities
+            comply with the Americans with Disabilities Act (ADA). If you need special accommodations or have an accessibility
+            concern, please contact us so we can serve you better.
+          </p>
         </div>
       </section>
-
-      <Footer />
-    </div>;
+    </>
+  );
 };
 export default Contact;

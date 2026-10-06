@@ -1,108 +1,92 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
-const Footer = () => {
-  return <footer className="bg-secondary border-t border-border">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-hero-gradient rounded-lg flex items-center justify-center">
-                <span className="text-lg font-bold text-white">KC</span>
-              </div>
-              <h3 className="text-lg font-bold text-foreground">Kids Choice INC.</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">Licensed transportation services specializing in wheelchair-accessible transport and school bus services since 1998.</p>
-            <p className="text-xs text-muted-foreground">
-              &copy; 2025 Kids Choice INC. All rights reserved.
-            </p>
-          </div>
+import Wordmark from "@/components/Wordmark";
+import { EMAIL, HOURS, PHONE_DISPLAY, PHONE_HREF, SERVICE_AREA } from "@/lib/site";
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/wheelchair-services" className="text-muted-foreground hover:text-primary transition-colors">
-                  Wheelchair Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/school-transportation" className="text-muted-foreground hover:text-primary transition-colors">
-                  School Transportation
-                </Link>
-              </li>
-              <li>
-                <Link to="/fleet" className="text-muted-foreground hover:text-primary transition-colors">
-                  Fleet & Safety
-                </Link>
-              </li>
-              <li>
-                <Link to="/join-us" className="text-muted-foreground hover:text-primary transition-colors">
-                  Join Our Team
-                </Link>
-              </li>
-            </ul>
-          </div>
+const serviceLinks = [
+  { name: "Wheelchair & mobility transport", path: "/wheelchair-services" },
+  { name: "School transportation", path: "/school-transportation" },
+  { name: "Fleet & safety", path: "/fleet" },
+];
 
-          {/* Services */}
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Our Services</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Wheelchair Accessible Transport</li>
-              <li>Mobility Assistance</li>
-              <li>School Bus Services</li>
-              <li>Private School Contracts</li>
-              <li>Door-to-Door Service</li>
-              <li>Medical Appointments</li>
-            </ul>
-          </div>
+const companyLinks = [
+  { name: "Home", path: "/" },
+  { name: "About us", path: "/about" },
+  { name: "Join our team", path: "/join-us" },
+  { name: "Contact", path: "/contact" },
+];
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Contact Us</h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start space-x-2">
-                <Phone className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <div>
-                  <p className="text-muted-foreground">Phone:</p>
-                  <a href="tel:+19733841425" className="text-foreground hover:text-primary transition-colors">(973) 384-1425</a>
-                </div>
+const linkClass = "text-white/80 underline-offset-4 transition-colors hover:text-white hover:underline";
+
+const Footer = () => (
+  <footer className="on-dark border-t border-white/10 bg-asphalt text-white">
+    <div className="container-site grid gap-12 py-16 md:py-20 lg:grid-cols-12">
+      <div className="lg:col-span-5">
+        <Link to="/" className="inline-block rounded-lg" aria-label="Kids Choice INC., home">
+          <Wordmark inverse />
+        </Link>
+        <p className="mt-6 max-w-sm text-white/80">
+          Licensed school bus and wheelchair-accessible transportation for families, schools and riders across {SERVICE_AREA}.
+        </p>
+        <a
+          href={PHONE_HREF}
+          className="mt-8 inline-block whitespace-nowrap rounded-lg font-display text-[2rem] font-extrabold tracking-tight underline decoration-bus decoration-[3px] underline-offset-[6px] hover:decoration-white sm:text-[2.5rem]"
+        >
+          {PHONE_DISPLAY}
+        </a>
+        <p className="mt-2 text-sm text-white/70">{HOURS}. Emergency service 24/7.</p>
+      </div>
+
+      <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">
+        <div>
+          <h2 className="font-sans text-sm font-bold uppercase tracking-[0.08em] text-white/60">Services</h2>
+          <ul className="mt-4 grid gap-3">
+            {serviceLinks.map(link => (
+              <li key={link.path}>
+                <Link to={link.path} className={linkClass}>
+                  {link.name}
+                </Link>
               </li>
-              <li className="flex items-start space-x-2">
-                <Mail className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <div>
-                  <p className="text-muted-foreground">Email:</p>
-                  <a href="mailto:info@kidschoicenj.com" className="text-foreground hover:text-primary transition-colors">info@kidschoicenj.com</a>
-                </div>
-              </li>
-              <li className="flex items-start space-x-2">
-                <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <div>
-                  <p className="text-muted-foreground">Service Area:</p>
-                  <p className="text-foreground">Northern/Central New Jersey</p>
-                </div>
-              </li>
-            </ul>
-          </div>
+            ))}
+          </ul>
         </div>
-
-        <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>
-            Kids Choice INC. is an equal opportunity service provider committed to ADA compliance and accessibility for all.
-          </p>
+        <div>
+          <h2 className="font-sans text-sm font-bold uppercase tracking-[0.08em] text-white/60">Company</h2>
+          <ul className="mt-4 grid gap-3">
+            {companyLinks.map(link => (
+              <li key={link.path}>
+                <Link to={link.path} className={linkClass}>
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 className="font-sans text-sm font-bold uppercase tracking-[0.08em] text-white/60">Reach us</h2>
+          <ul className="mt-4 grid gap-3">
+            <li>
+              <a href={`mailto:${EMAIL}`} className={`${linkClass} break-all`}>
+                {EMAIL}
+              </a>
+            </li>
+            <li>
+              <a href={PHONE_HREF} className={linkClass}>
+                {PHONE_DISPLAY}
+              </a>
+            </li>
+            <li className="text-white/80">{SERVICE_AREA}</li>
+          </ul>
         </div>
       </div>
-    </footer>;
-};
+    </div>
+
+    <div className="border-t border-white/10">
+      <div className="container-site flex flex-col gap-2 py-6 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
+        <p>&copy; {new Date().getFullYear()} Kids Choice INC. All rights reserved.</p>
+        <p>An equal opportunity service provider, committed to ADA compliance and accessibility for all.</p>
+      </div>
+    </div>
+  </footer>
+);
+
 export default Footer;
